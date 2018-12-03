@@ -31,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:rotation="-50"
+                android:elevation="32dp"
                 motion:layout_constraintBottom_toBottomOf="parent"
                 motion:layout_constraintEnd_toStartOf="parent"
                 motion:layout_constraintTop_toTopOf="parent"/>
@@ -42,6 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 motion:layout_constraintBottom_toBottomOf="parent"
+                android:elevation="32dp"
                 android:rotation="50"
                 motion:layout_constraintStart_toEndOf="parent"
                 motion:layout_constraintTop_toTopOf="parent"/>

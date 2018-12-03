@@ -50,6 +50,7 @@
     <android.support.v7.widget.CardView
             android:id="@+id/image2"
             android:layout_width="wrap_content"
+            android:elevation="16dp"
             android:layout_height="wrap_content"
             android:gravity="bottom|center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -88,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="bottom|center"
+            android:elevation="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
