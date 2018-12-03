@@ -15,7 +15,7 @@
         <KeyFrameSet>
             <KeyPosition
                     motion:keyPositionType="parentRelative"
-                    motion:percentY="0.55"
+                    motion:percentY="0.40"
                     motion:framePosition="50"
                     motion:curveFit="spline"
                     motion:transitionEasing="decelerate"

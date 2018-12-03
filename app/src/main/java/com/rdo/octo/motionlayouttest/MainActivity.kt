@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.endRight -> "Ça te fait vomir !"
                     else -> "Inconnu"
                 }
-                Toast.makeText(this@MainActivity, text, Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@MainActivity, text, Toast.LENGTH_LONG).show()
                 if (name1.text.toString() == "Paris") {
                     picture1.setImageResource(R.drawable.sanfrancisco)
                     name1.text = "New York"
