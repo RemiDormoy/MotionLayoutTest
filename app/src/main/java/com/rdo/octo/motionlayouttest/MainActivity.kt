@@ -19,10 +19,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //likeImage.visibility = View.GONE
-        //dislikeImage.visibility = View.GONE
         button.setOnClickListener {
             startActivity(Intent(this, Rotation3DActivity::class.java))
+        }
+        buttonTime.setOnClickListener {
+            startActivity(Intent(this, TimeActivity::class.java))
         }
         motion.setOnTouchListener { v, event ->
             when (event.action) {

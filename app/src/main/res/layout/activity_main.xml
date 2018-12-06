@@ -122,5 +122,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="16dp"
             tools:layout_editor_absoluteX="295dp" android:id="@+id/button"/>
+    <Button
+            android:text="Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/buttonTime"/>
 
 </android.support.constraint.motion.MotionLayout>

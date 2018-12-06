@@ -19,6 +19,7 @@
 
         <activity android:name=".Rotation3DActivity"/>
         <activity android:name=".CalendarActivity"/>
+        <activity android:name=".TimeActivity"/>
     </application>
 
 </manifest>
