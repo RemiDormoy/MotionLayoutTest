@@ -1,5 +1,6 @@
 package com.rdo.octo.motionlayouttest
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.motion.MotionLayout
@@ -20,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //likeImage.visibility = View.GONE
         //dislikeImage.visibility = View.GONE
+        button.setOnClickListener {
+            startActivity(Intent(this, Rotation3DActivity::class.java))
+        }
         motion.setOnTouchListener { v, event ->
             when (event.action) {
                 ACTION_DOWN -> isImageTouched = true
