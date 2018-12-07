@@ -1,15 +1,18 @@
 package com.rdo.octo.motionlayouttest
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.motion.MotionLayout
-import android.view.DragEvent.ACTION_DROP
 import android.view.MotionEvent
 import android.view.MotionEvent.ACTION_DOWN
 import android.view.MotionEvent.ACTION_UP
 import android.view.View
-import android.widget.Toast
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.BounceInterpolator
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.OvershootInterpolator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        floatingActionButton.setOnClickListener {
+            animateButton()
+        }
         button.setOnClickListener {
             startActivity(Intent(this, Rotation3DActivity::class.java))
         }
@@ -84,6 +90,43 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun animateButton() {
+        val down = ObjectAnimator.ofFloat(0f, 100f)
+        down.duration = 400
+        down.interpolator = BounceInterpolator()
+        down.addUpdateListener {
+            val value = it.animatedValue as Float
+            floatingActionButton.translationY = floatingActionButton.height * (value - 100) / 120
+        }
+
+
+        val up = ObjectAnimator.ofFloat(0f, 100f)
+        up.duration = 300
+        up.interpolator = DecelerateInterpolator(2f)
+        up.addUpdateListener {
+            val value = it.animatedValue as Float
+            floatingActionButton.translationY = floatingActionButton.height * (-value) / 120
+            if (value == 100f) {
+                down.start()
+            }
+        }
+        val scale = ObjectAnimator.ofFloat(0f, 50f)
+        scale.duration = 400
+        scale.interpolator = AccelerateInterpolator()
+        scale.addUpdateListener {
+            val value = it.animatedValue as Float
+            if (value > 25f) {
+                up.start()
+                floatingActionButton.scaleX = 1 + (0.25f * (50 - value) / 25)
+                floatingActionButton.scaleY = 1 - (0.25f * (50 - value) / 25)
+            } else {
+                floatingActionButton.scaleX = 1 + (0.25f * value / 25)
+                floatingActionButton.scaleY = 1 - (0.25f * value / 25)
+            }
+        }
+        scale.start()
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
