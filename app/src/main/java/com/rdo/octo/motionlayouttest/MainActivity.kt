@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        floatingActionButton.setOnClickListener {
-            animateButton()
+        button3.setOnClickListener {
+            startActivity(Intent(this, ButtonActivity::class.java))
         }
         button.setOnClickListener {
             startActivity(Intent(this, Rotation3DActivity::class.java))
@@ -90,43 +90,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-    }
-
-    private fun animateButton() {
-        val down = ObjectAnimator.ofFloat(0f, 100f)
-        down.duration = 400
-        down.interpolator = BounceInterpolator()
-        down.addUpdateListener {
-            val value = it.animatedValue as Float
-            floatingActionButton.translationY = floatingActionButton.height * (value - 100) / 120
-        }
-
-
-        val up = ObjectAnimator.ofFloat(0f, 100f)
-        up.duration = 300
-        up.interpolator = DecelerateInterpolator(2f)
-        up.addUpdateListener {
-            val value = it.animatedValue as Float
-            floatingActionButton.translationY = floatingActionButton.height * (-value) / 120
-            if (value == 100f) {
-                down.start()
-            }
-        }
-        val scale = ObjectAnimator.ofFloat(0f, 50f)
-        scale.duration = 400
-        scale.interpolator = AccelerateInterpolator()
-        scale.addUpdateListener {
-            val value = it.animatedValue as Float
-            if (value > 25f) {
-                up.start()
-                floatingActionButton.scaleX = 1 + (0.25f * (50 - value) / 25)
-                floatingActionButton.scaleY = 1 - (0.25f * (50 - value) / 25)
-            } else {
-                floatingActionButton.scaleX = 1 + (0.25f * value / 25)
-                floatingActionButton.scaleY = 1 - (0.25f * value / 25)
-            }
-        }
-        scale.start()
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {

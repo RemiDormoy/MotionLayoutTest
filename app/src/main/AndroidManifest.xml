@@ -20,6 +20,7 @@
         <activity android:name=".Rotation3DActivity"/>
         <activity android:name=".CalendarActivity"/>
         <activity android:name=".TimeActivity"/>
+        <activity android:name=".ButtonActivity"/>
     </application>
 
 </manifest>
