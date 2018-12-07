@@ -57,11 +57,20 @@ class ButtonActivity : AppCompatActivity() {
             val value = it.animatedValue as Float
             if (value > 25f) {
                 up.start()
-                floatingActionButton.scaleX = 1 + (0.25f * (50 - value) / 25)
-                floatingActionButton.scaleY = 1 - (0.25f * (50 - value) / 25)
+                val x = 1 + (0.25f * (50 - value) / 25)
+                val y = 1 - (0.25f * (50 - value) / 25)
+                floatingActionButton.scaleX = x
+                floatingActionButton.scaleY = y
+                drawable.buttonHeight = drawable.buttonHeightInit * y
+                drawable.buttonWidth = drawable.buttonHeightInit * x
             } else {
-                floatingActionButton.scaleX = 1 + (0.25f * value / 25)
-                floatingActionButton.scaleY = 1 - (0.25f * value / 25)
+                val x = 1 + (0.25f * value / 25)
+                val y = 1 - (0.25f * value / 25)
+                floatingActionButton.scaleX = x
+                floatingActionButton.scaleY = y
+                drawable.buttonHeight = drawable.buttonHeightInit * y
+                drawable.buttonWidth = drawable.buttonHeightInit * x
+                drawable.invalidateMaman()
             }
         }
         return scale
@@ -95,11 +104,17 @@ class ButtonActivity : AppCompatActivity() {
     }
 }
 
-class MyDrawable(private val paint: Paint, private val buttonHeight: Int) : Drawable() {
+class MyDrawable(private val paint: Paint, val buttonHeightInit: Int) : Drawable() {
 
     private var translation: Float = 0f
     var width = 1000
     var height = 200
+    var buttonHeight = buttonHeightInit.toFloat()
+    var buttonWidth = buttonHeightInit.toFloat()
+
+    fun invalidateMaman() {
+        callback?.invalidateDrawable(this)
+    }
 
     fun setTranslation(translation: Float) {
         this.translation = translation
@@ -110,10 +125,10 @@ class MyDrawable(private val paint: Paint, private val buttonHeight: Int) : Draw
         val path = Path()
         path.moveTo(0f, height.toFloat())
         path.lineTo(0f, 0f)
-        path.lineTo((width / 2f) - (buttonHeight / 2) - 30, 0f)
+        path.lineTo((width / 2f) - (buttonWidth / 2) - 30, 0f)
         //path.arcTo((width / 2f) - (buttonHeight / 2) - 20, 0f,(width / 2f) + (buttonHeight / 2) + 20,  buttonHeight + 20f, 180f, 360f, false)
-        val x1 = (width / 2f) - (buttonHeight / 2) - 30
-        val x2 = (width / 2f) + (buttonHeight / 2) + 30
+        val x1 = (width / 2f) - (buttonWidth / 2) - 30
+        val x2 = (width / 2f) + (buttonWidth / 2) + 30
         for (i in 0..314) {
             val progress = (cos((i + 314) / 100f) + 1f) / 2f
             path.lineTo(
@@ -121,7 +136,7 @@ class MyDrawable(private val paint: Paint, private val buttonHeight: Int) : Draw
                 maxOf(sin(i.toFloat() / 100f) * (((buttonHeight / 2) + 30f) + translation), 0f)
             )
         }
-        path.lineTo((width / 2f) + (buttonHeight / 2) + 30, 0f)
+        path.lineTo((width / 2f) + (buttonWidth / 2) + 30, 0f)
         path.lineTo(width.toFloat(), 0f)
         path.lineTo(width.toFloat(), height.toFloat())
         path.close()
