@@ -19,8 +19,14 @@ import kotlin.math.tan
 class ButtonActivity : AppCompatActivity() {
 
     lateinit var drawable: MyDrawable
+    lateinit var lavaDrawable: LavaDrawable
 
     private val paint = Paint(ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.FILL
+        strokeWidth = 4f
+    }
+
+    private val paintLava = Paint(ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
         strokeWidth = 4f
     }
@@ -39,7 +45,10 @@ class ButtonActivity : AppCompatActivity() {
             }
             bottomView.setImageDrawable(drawable)
         }
-
+        testLavaImageView.post {
+            lavaDrawable = LavaDrawable(paintLava, testLavaImageView.width, testLavaImageView.height)
+            testLavaImageView.setImageDrawable(lavaDrawable)
+        }
     }
 
     private fun animateButton() {
