@@ -2,7 +2,7 @@ package com.rdo.octo.motionlayouttest
 
 import android.animation.Animator
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.view.View

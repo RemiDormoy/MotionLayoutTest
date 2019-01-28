@@ -2,8 +2,8 @@ package com.rdo.octo.motionlayouttest
 
 import android.os.Bundle
 import android.os.Handler
-import android.support.constraint.ConstraintSet
-import android.support.v7.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.appcompat.app.AppCompatActivity
 import android.transition.TransitionManager
 import android.view.MotionEvent
 import kotlinx.android.synthetic.main.state_1.*

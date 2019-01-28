@@ -2,9 +2,9 @@ package com.rdo.octo.motionlayouttest
 
 import android.animation.ObjectAnimator
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.constraint.motion.MotionLayout
+import androidx.constraintlayout.motion.widget.MotionLayout
 import android.view.MotionEvent
 import android.view.MotionEvent.ACTION_DOWN
 import android.view.MotionEvent.ACTION_UP
@@ -39,6 +39,14 @@ class MainActivity : AppCompatActivity() {
             false
         }
         motion.setTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
+                // Do nothing
+            }
+
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+                // Do nothing
+            }
+
             override fun onTransitionChange(p0: MotionLayout, startSet: Int, endSet: Int, progress: Float) {
                 if (!isImageTouched) {
                     if (progress < 0.55 && progress > 0.4) {

@@ -3,7 +3,7 @@ package com.rdo.octo.motionlayouttest
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.animation.BounceInterpolator
