@@ -21,6 +21,12 @@ import kotlinx.android.synthetic.main.activity_button.*
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.tan
+import android.view.ViewAnimationUtils
+import android.animation.Animator
+import android.opengl.ETC1.getHeight
+import android.opengl.ETC1.getWidth
+
+
 
 class ButtonActivity : AppCompatActivity() {
 
@@ -107,11 +113,17 @@ class ButtonActivity : AppCompatActivity() {
     private fun addOneCard() {
         cardsLoaded += 1
         if (cardsLoaded > 3) {
-            testLavaImageView.visibility = GONE
-            imageView26.visibility = GONE
+            testLavaImageView.alpha = 0f
+            imageView26.alpha = 0f
         } else {
             val view = LayoutInflater.from(this).inflate(R.layout.cell_card_bubble, cardsContainer, false)
             cardsContainer.addView(view)
+            if (cardsLoaded > 2) {
+                cardsContainer.post {
+                    testLavaImageView.background = null
+                    imageView26.background = null
+                }
+            }
         }
         pending = false
         isEnough = false

@@ -69,6 +69,7 @@
 
     <LinearLayout
             android:id="@+id/cardsContainer"
+            android:animateLayoutChanges="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
