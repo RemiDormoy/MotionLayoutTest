@@ -2,21 +2,24 @@ package com.rdo.octo.motionlayouttest
 
 import android.graphics.*
 import android.graphics.drawable.Drawable
-import kotlin.math.cos
-import kotlin.math.sin
-import kotlin.math.sqrt
+import android.util.Log
+import kotlin.math.*
 
 class LavaDrawable(private val paint: Paint, private val width: Int, private val height: Int) : Drawable() {
 
     private var distance = 0
 
     fun setDistance(newDistance: Int = distance) {
-        this.distance = newDistance
-        callback?.invalidateDrawable(this)
+        if (newDistance > 3 * height) {
+            // Todo animate to 0
+        } else if (abs(this.distance - newDistance) > 5) {
+            this.distance = newDistance
+            callback?.invalidateDrawable(this)
+        }
     }
 
     override fun draw(canvas: Canvas) {
-        if (distance < height) {
+        if (distance == 0) {
             val path = Path()
             path.moveTo(width / 2f, height / 2f)
             for (i in 0..628) {
@@ -30,8 +33,46 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
         } else {
             val path = Path()
             val y1 = (distance / 2).toFloat()
-            val x1 = sqrt((3 * height / 2) * (3 * height / 2).toFloat() - (distance * distance / 4))
+            val endCircleAngle = asin(y1 * 2 / (3 * height))
+            val x1 = cos(endCircleAngle) * 3 / 2 * height
+            val startCircleAngle = PI - endCircleAngle
+            val b = PI - startCircleAngle
+            val angleInDegree = endCircleAngle * 180 / PI
+            val angleInDegree2 = startCircleAngle * 180 / PI
+            Log.d(
+                "angle angle yolo",
+                "l'angle est de départ est $angleInDegree2, l'angle d'arrivée est $angleInDegree et la distance $distance"
+            )
+            drawFirstCirclePartially(path, endCircleAngle, startCircleAngle)
+            for (i in ((-b) * 100).toInt()..0) {
+                val angle = i / 100.toDouble()
+                val x = width / 4f * cos(angle) + width / 2 + x1
+                val y = height / -4f * sin(angle) + height / 2 - y1
+                path.lineTo(x.toFloat(), y.toFloat())
+            }
+            for (j in (PI * 100).toInt()..(PI + b).toInt() * 100) {
+                val angle = j / 100.toDouble()
+                val x = width / 4f * cos(angle) + width / 2 - x1
+                val y = height / -4f * sin(angle) + height / 2 - y1
+                path.lineTo(x.toFloat(), y.toFloat())
+            }
+            path.moveTo(width / 2f, height / 2f)
+            path.close()
+            canvas.drawPath(path, paint)
+        }
+    }
 
+    private fun drawFirstCirclePartially(
+        path: Path,
+        endCircleAngle: Float,
+        startCircleAngle: Double
+    ) {
+        path.moveTo(width / 2f, height / 2f)
+        for (i in ((endCircleAngle + 2 * PI) * 100).toInt() downTo (startCircleAngle * 100).toInt()) {
+            val angle = i / 100.toDouble()
+            val x = width / 2f * (1 + cos(angle))
+            val y = height / 2f * (1 - sin(angle))
+            path.lineTo(x.toFloat(), y.toFloat())
         }
     }
 

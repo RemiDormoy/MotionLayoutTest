@@ -49,6 +49,15 @@ class ButtonActivity : AppCompatActivity() {
             lavaDrawable = LavaDrawable(paintLava, testLavaImageView.width, testLavaImageView.height)
             testLavaImageView.setImageDrawable(lavaDrawable)
         }
+        testLavaImageView.setOnClickListener {
+            //val down = ObjectAnimator.ofFloat(0f, testLavaImageView.height * 2.toFloat())
+            //down.duration = 2000
+            //down.addUpdateListener {
+                ///val value = it.animatedValue as Float
+                lavaDrawable.setDistance(testLavaImageView.height * 2)
+          //  }
+            //down.start()
+        }
     }
 
     private fun animateButton() {
