@@ -126,6 +126,12 @@ class ButtonActivity : AppCompatActivity() {
         cardsLoaded -= 1
     }
 
+    private fun getColorForFrame() = when (cardsLoaded) {
+        1 -> ContextCompat.getColor(this, R.color.colorPrimary)
+        2 -> ContextCompat.getColor(this, R.color.color2)
+        else -> ContextCompat.getColor(this, R.color.colorAccent)
+    }
+
     private fun addOneCard() {
         cardsLoaded += 1
         if (cardsLoaded > 3) {
@@ -133,6 +139,7 @@ class ButtonActivity : AppCompatActivity() {
         } else {
             val view = LayoutInflater.from(this).inflate(R.layout.cell_card_bubble, cardsContainer, false)
             cardsContainer.addView(view)
+            view.colorFrame.setBackgroundColor(getColorForFrame())
             view.closeImage.setOnClickListener {
                 cardsContainer.removeView(view)
                 onCardDeleted()
