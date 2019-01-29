@@ -50,13 +50,15 @@ class ButtonActivity : AppCompatActivity() {
             testLavaImageView.setImageDrawable(lavaDrawable)
         }
         testLavaImageView.setOnClickListener {
-            //val down = ObjectAnimator.ofFloat(0f, testLavaImageView.height * 2.toFloat())
-            //down.duration = 2000
-            //down.addUpdateListener {
-                ///val value = it.animatedValue as Float
-                lavaDrawable.setDistance(testLavaImageView.height)
-          //  }
-            //down.start()
+            val down = ObjectAnimator.ofFloat(0f, testLavaImageView.height.toFloat() * 1f)
+            down.duration = 2000
+            down.interpolator = BounceInterpolator()
+            down.addUpdateListener {
+                val value = it.animatedValue as Float
+                lavaDrawable.setDistance(value.toInt())
+                testLavaImageView.translationY = minOf(testLavaImageView.height /2f,value / 2)
+            }
+            down.start()
         }
     }
 

@@ -52,9 +52,9 @@
             app:srcCompat="@drawable/ic_android_black_24dp"
             android:id="@+id/testLavaImageView"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp"/>
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

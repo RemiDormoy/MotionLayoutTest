@@ -51,13 +51,15 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
                 val y = (r / -2f * sin(angle)) + (height / 2) - y1
                 path.lineTo(x.toFloat(), y.toFloat())
             }
-            for (i in (PI * 100).toInt()..(PI + b).toInt() * 100) {
-                val angle = i / 100.toDouble()
-                val x = width / 2 + (cos(angle) * r / 2f) + x1
-                val y = (r / -2f * sin(angle)) + (height / 2) - y1
-                path.lineTo(x.toFloat(), y.toFloat())
+            for (j in (PI * 100 - 1).toInt()..(PI + b + 1).toInt() * 100) {
+                if (j != (PI + b + 1).toInt() * 100) {
+                    val angle = j / 100.toDouble()
+                    val x = width / 2 + (cos(angle) * r / 2f) + x1
+                    val y = (r / -2f * sin(angle)) + (height / 2) - y1
+                    path.lineTo(x.toFloat(), y.toFloat())
+                    Log.d("YOLO coordinates", "$x, $y")
+                }
             }
-            path.moveTo(width / 2f, height / 2f)
             path.close()
             canvas.drawPath(path, paint)
         }
