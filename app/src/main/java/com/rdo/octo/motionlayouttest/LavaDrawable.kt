@@ -60,7 +60,7 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
             path.moveTo(width / 2f, height / 2f)
             drawCircleDown(startCircleAngle, endCircleAngle, path)
             Log.d("YOLO", "x1 est egal a $x1, b vaut ${b / PI * 180}")
-            for (i in ((PI- b - 1) * 100).toInt()..(PI * 100).toInt()) {
+            for (i in ((PI - b - 1) * 100).toInt()..(PI * 100).toInt()) {
                 val angle = i / 100.toDouble()
                 val x = width / 2 + (cos(angle) * r / 2f) + x1
                 val y = (r / -2f * sin(angle)) + (height / 2) - y1

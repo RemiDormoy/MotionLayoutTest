@@ -60,7 +60,8 @@ class ButtonActivity : AppCompatActivity() {
                 val value = it.animatedValue as Float
                 lavaDrawable.setDistance(value.toInt())
                 lavaDrawableTop.setDistance(-value.toInt())
-                testLavaImageView.translationY = minOf(testLavaImageView.height.toFloat(),value)
+                testLavaImageView.translationX = 3.toFloat()
+                testLavaImageView.translationY = minOf(testLavaImageView.height.toFloat(),value) - 10
             }
             down.start()
         }
