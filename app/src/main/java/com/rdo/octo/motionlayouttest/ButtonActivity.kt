@@ -124,6 +124,7 @@ class ButtonActivity : AppCompatActivity() {
             cardsLoaded = 2
         }
         cardsLoaded -= 1
+        setPaints()
     }
 
     private fun getColorForFrame() = when (cardsLoaded) {
