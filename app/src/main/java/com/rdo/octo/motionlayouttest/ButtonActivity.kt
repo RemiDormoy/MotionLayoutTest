@@ -25,7 +25,7 @@ import android.view.ViewAnimationUtils
 import android.animation.Animator
 import android.opengl.ETC1.getHeight
 import android.opengl.ETC1.getWidth
-
+import kotlinx.android.synthetic.main.cell_card_bubble.view.*
 
 
 class ButtonActivity : AppCompatActivity() {
@@ -110,14 +110,26 @@ class ButtonActivity : AppCompatActivity() {
     private var pending = false
     private var isEnough = false
 
+    private fun onCardDeleted() {
+        if (cardsLoaded > 2) {
+            testLavaImageView.background = lavaDrawable
+            imageView26.background = lavaDrawableTop
+            cardsLoaded = 2
+        }
+        cardsLoaded -= 1
+    }
+
     private fun addOneCard() {
         cardsLoaded += 1
         if (cardsLoaded > 3) {
-            testLavaImageView.alpha = 0f
-            imageView26.alpha = 0f
+            // Do nothing
         } else {
             val view = LayoutInflater.from(this).inflate(R.layout.cell_card_bubble, cardsContainer, false)
             cardsContainer.addView(view)
+            view.closeImage.setOnClickListener {
+                cardsContainer.removeView(view)
+                onCardDeleted()
+            }
             if (cardsLoaded > 2) {
                 cardsContainer.post {
                     testLavaImageView.background = null

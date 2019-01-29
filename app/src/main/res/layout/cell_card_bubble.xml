@@ -13,6 +13,30 @@
         android:layout_marginLeft="32dp"
 >
 
-    <View android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/colorPrimary"/>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Je suis du contenu intéressant"
+                android:textColor="@android:color/white"/>
+
+        <ImageView
+                android:id="@+id/closeImage"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:layout_gravity="end"
+                android:rotation="45"
+                android:background="?attr/selectableItemBackground"
+                app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"
+        />
+    </FrameLayout>
 
 </androidx.cardview.widget.CardView>
