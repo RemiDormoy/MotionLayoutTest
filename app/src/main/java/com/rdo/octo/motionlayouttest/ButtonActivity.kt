@@ -20,6 +20,7 @@ class ButtonActivity : AppCompatActivity() {
 
     lateinit var drawable: MyDrawable
     lateinit var lavaDrawable: LavaDrawable
+    lateinit var lavaDrawableTop: LavaDrawable
 
     private val paint = Paint(ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
@@ -46,7 +47,9 @@ class ButtonActivity : AppCompatActivity() {
             bottomView.setImageDrawable(drawable)
         }
         testLavaImageView.post {
-            lavaDrawable = LavaDrawable(paintLava, testLavaImageView.width, testLavaImageView.height)
+            lavaDrawableTop = LavaDrawable(paint, testLavaImageView.width, testLavaImageView.height)
+            imageView26.setImageDrawable(lavaDrawableTop)
+            lavaDrawable = LavaDrawable(paint, testLavaImageView.width, testLavaImageView.height)
             testLavaImageView.setImageDrawable(lavaDrawable)
         }
         testLavaImageView.setOnClickListener {
@@ -56,7 +59,8 @@ class ButtonActivity : AppCompatActivity() {
             down.addUpdateListener {
                 val value = it.animatedValue as Float
                 lavaDrawable.setDistance(value.toInt())
-                testLavaImageView.translationY = minOf(testLavaImageView.height /2f,value / 2)
+                lavaDrawableTop.setDistance(-value.toInt())
+                testLavaImageView.translationY = minOf(testLavaImageView.height.toFloat(),value)
             }
             down.start()
         }
