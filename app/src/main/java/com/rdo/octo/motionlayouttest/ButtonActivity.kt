@@ -54,7 +54,7 @@ class ButtonActivity : AppCompatActivity() {
             //down.duration = 2000
             //down.addUpdateListener {
                 ///val value = it.animatedValue as Float
-                lavaDrawable.setDistance(testLavaImageView.height * 2)
+                lavaDrawable.setDistance(testLavaImageView.height)
           //  }
             //down.start()
         }

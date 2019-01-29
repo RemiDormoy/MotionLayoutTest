@@ -32,28 +32,29 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
             canvas.drawPath(path, paint)
         } else {
             val path = Path()
+            val r = height / 2
             val y1 = (distance / 2).toFloat()
-            val endCircleAngle = asin(y1 * 2 / (3 * height))
-            val x1 = cos(endCircleAngle) * 3 / 2 * height
+            val endCircleAngle = asin(y1 * 2 / (3 * r))
+            val x1 = cos(endCircleAngle) * 3 / 2 * r
             val startCircleAngle = PI - endCircleAngle
-            val b = PI - startCircleAngle
+            val b = endCircleAngle
             val angleInDegree = endCircleAngle * 180 / PI
             val angleInDegree2 = startCircleAngle * 180 / PI
             Log.d(
                 "angle angle yolo",
-                "l'angle est de départ est $angleInDegree2, l'angle d'arrivée est $angleInDegree et la distance $distance"
+                "l'angle est de départ est $angleInDegree2, l'angle d'arrivée est $angleInDegree, x1 vaut $x1 et la distance $distance"
             )
             drawFirstCirclePartially(path, endCircleAngle, startCircleAngle)
             for (i in ((-b) * 100).toInt()..0) {
                 val angle = i / 100.toDouble()
-                val x = width / 4f * cos(angle) + width / 2 + x1
-                val y = height / -4f * sin(angle) + height / 2 - y1
+                val x = width / 2 + (cos(angle) * r / 2f) - x1
+                val y = (r / -2f * sin(angle)) + (height / 2) - y1
                 path.lineTo(x.toFloat(), y.toFloat())
             }
-            for (j in (PI * 100).toInt()..(PI + b).toInt() * 100) {
-                val angle = j / 100.toDouble()
-                val x = width / 4f * cos(angle) + width / 2 - x1
-                val y = height / -4f * sin(angle) + height / 2 - y1
+            for (i in (PI * 100).toInt()..(PI + b).toInt() * 100) {
+                val angle = i / 100.toDouble()
+                val x = width / 2 + (cos(angle) * r / 2f) + x1
+                val y = (r / -2f * sin(angle)) + (height / 2) - y1
                 path.lineTo(x.toFloat(), y.toFloat())
             }
             path.moveTo(width / 2f, height / 2f)
