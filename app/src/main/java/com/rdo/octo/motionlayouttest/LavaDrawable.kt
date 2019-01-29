@@ -19,7 +19,7 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
     }
 
     override fun draw(canvas: Canvas) {
-        if (distance == 0) {
+        if (abs(distance) < height / 10) {
             val path = Path()
             path.moveTo(width / 2f, height / 2f)
             for (i in 0..628) {
@@ -68,7 +68,7 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
             }
             for (i in 0..(-b + 1).toInt() * 100) {
                 val angle = i / 100.toDouble()
-                val x = width / 2 + (cos(angle) * r / 2f) - x1
+                val x = maxOf(width / 2 + (cos(angle) * r / 2f) - x1, (width / 2 + (cos(-b) * r / 2f) - x1).toDouble())
                 val y = (r / -2f * sin(angle)) + (height / 2) - y1
                 path.lineTo(x.toFloat(), y.toFloat())
             }
@@ -94,12 +94,13 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
         path: Path
     ) {
         for (j in (PI * 100 - 1).toInt()..(PI + b + 1).toInt() * 100) {
-            if (j != (PI + b + 1).toInt() * 100) {
-                val angle = j / 100.toDouble()
-                val x = width / 2 + (cos(angle) * r / 2f) + x1
-                val y = (r / -2f * sin(angle)) + (height / 2) - y1
-                path.lineTo(x.toFloat(), y.toFloat())
-            }
+            val angle = j / 100.toDouble()
+            val x = minOf(
+                width / 2 + (cos(angle) * r / 2f) + x1,
+                width / 2 + (cos((PI + b)) * r / 2f) + x1
+            )
+            val y = (r / -2f * sin(angle)) + (height / 2) - y1
+            path.lineTo(x.toFloat(), y.toFloat())
         }
     }
 
