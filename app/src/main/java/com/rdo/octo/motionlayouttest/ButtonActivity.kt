@@ -6,10 +6,16 @@ import android.graphics.*
 import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.View.GONE
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
 import android.view.animation.DecelerateInterpolator
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_button.*
 import kotlin.math.cos
@@ -48,23 +54,43 @@ class ButtonActivity : AppCompatActivity() {
         }
         testLavaImageView.post {
             lavaDrawableTop = LavaDrawable(paint, testLavaImageView.width, testLavaImageView.height)
-            imageView26.setImageDrawable(lavaDrawableTop)
+            imageView26.setBackground(lavaDrawableTop)
             lavaDrawable = LavaDrawable(paint, testLavaImageView.width, testLavaImageView.height)
-            testLavaImageView.setImageDrawable(lavaDrawable)
+            testLavaImageView.setBackground(lavaDrawable)
         }
-        testLavaImageView.setOnClickListener {
-            val down = ObjectAnimator.ofFloat(0f, testLavaImageView.height.toFloat() * 1f)
-            down.duration = 2000
-            down.interpolator = BounceInterpolator()
-            down.addUpdateListener {
-                val value = it.animatedValue as Float
+
+        container.setTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
+                // Do nothing
+            }
+
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+                // Do nothing
+            }
+
+            override fun onTransitionChange(p0: MotionLayout, startSet: Int, endSet: Int, progress: Float) {
+                val value = testLavaImageView.height * progress * 1f
                 lavaDrawable.setDistance(value.toInt())
                 lavaDrawableTop.setDistance(-value.toInt())
-                testLavaImageView.translationX = 3.toFloat()
-                testLavaImageView.translationY = minOf(testLavaImageView.height.toFloat(),value) - 10
+                testLavaImageView.translationY = minOf(testLavaImageView.height.toFloat(), value) - 10
+                if (progress > 0.95) {
+                    isEnough = true
+                }
             }
-            down.start()
-        }
+
+            override fun onTransitionCompleted(p0: MotionLayout, constraintSet: Int) {
+                if (!pending && isEnough) {
+                    pending = true
+                    testLavaImageView.translationX = 0f
+                    testLavaImageView.translationY = 0f
+                    container.progress = 0f
+                    lavaDrawable.setDistance(0)
+                    lavaDrawableTop.setDistance(0)
+                    addOneCard()
+                }
+            }
+
+        })
     }
 
     private fun animateButton() {
@@ -72,6 +98,23 @@ class ButtonActivity : AppCompatActivity() {
         val up = getUpAnimation(down)
         val scale = getScaleAnimation(up)
         scale.start()
+    }
+
+    private var cardsLoaded = 0
+    private var pending = false
+    private var isEnough = false
+
+    private fun addOneCard() {
+        cardsLoaded += 1
+        if (cardsLoaded > 3) {
+            testLavaImageView.visibility = GONE
+            imageView26.visibility = GONE
+        } else {
+            val view = LayoutInflater.from(this).inflate(R.layout.cell_card_bubble, cardsContainer, false)
+            cardsContainer.addView(view)
+        }
+        pending = false
+        isEnough = false
     }
 
     private fun getScaleAnimation(up: ValueAnimator): ValueAnimator {
@@ -183,5 +226,4 @@ class MyDrawable(private val paint: Paint, val buttonHeightInit: Int) : Drawable
     override fun setColorFilter(colorFilter: ColorFilter?) {
         paint.colorFilter = colorFilter
     }
-
 }
