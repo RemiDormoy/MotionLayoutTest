@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import kotlin.math.*
 
-class LavaDrawable(private val paint: Paint, private val width: Int, private val height: Int) : Drawable() {
+class LavaDrawable(private var paint: Paint, private val width: Int, private val height: Int) : Drawable() {
 
     private var distance = 0
 
@@ -133,5 +133,9 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
 
     override fun setColorFilter(colorFilter: ColorFilter?) {
         paint.colorFilter = colorFilter
+    }
+
+    fun setPaint(paintLavaTop: Paint) {
+        this.paint = paintLavaTop
     }
 }

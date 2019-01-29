@@ -39,7 +39,12 @@ class ButtonActivity : AppCompatActivity() {
         strokeWidth = 4f
     }
 
-    private val paintLava = Paint(ANTI_ALIAS_FLAG).apply {
+    private val paintLavaTop = Paint(ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.FILL
+        strokeWidth = 4f
+    }
+
+    private val paintLavaBottom = Paint(ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
         strokeWidth = 4f
     }
@@ -51,6 +56,8 @@ class ButtonActivity : AppCompatActivity() {
             animateButton()
         }
         paint.color = ContextCompat.getColor(this, R.color.colorPrimary)
+        paintLavaBottom.color = ContextCompat.getColor(this, R.color.color2)
+        paintLavaTop.color = ContextCompat.getColor(this, R.color.colorPrimary)
         bottomView.post {
             drawable = MyDrawable(paint, floatingActionButton.height).apply {
                 width = bottomView.width
@@ -59,9 +66,9 @@ class ButtonActivity : AppCompatActivity() {
             bottomView.setImageDrawable(drawable)
         }
         testLavaImageView.post {
-            lavaDrawableTop = LavaDrawable(paint, testLavaImageView.width, testLavaImageView.height)
+            lavaDrawableTop = LavaDrawable(paintLavaTop, testLavaImageView.width, testLavaImageView.height)
             imageView26.setBackground(lavaDrawableTop)
-            lavaDrawable = LavaDrawable(paint, testLavaImageView.width, testLavaImageView.height)
+            lavaDrawable = LavaDrawable(paintLavaBottom, testLavaImageView.width, testLavaImageView.height)
             testLavaImageView.setBackground(lavaDrawable)
         }
 
@@ -136,6 +143,7 @@ class ButtonActivity : AppCompatActivity() {
                     imageView26.background = null
                 }
             }
+            setPaints()
         }
         pending = false
         isEnough = false
@@ -181,6 +189,25 @@ class ButtonActivity : AppCompatActivity() {
             }
         }
         return up
+    }
+
+    private fun setPaints() {
+        when (cardsLoaded) {
+            0 -> {
+                paintLavaTop.color = ContextCompat.getColor(this, R.color.colorPrimary)
+                paintLavaBottom.color = ContextCompat.getColor(this, R.color.color2)
+            }
+            1 -> {
+                paintLavaTop.color = ContextCompat.getColor(this, R.color.color2)
+                paintLavaBottom.color = ContextCompat.getColor(this, R.color.colorAccent)
+            }
+            2 -> {
+                paintLavaTop.color = ContextCompat.getColor(this, R.color.colorAccent)
+                paintLavaBottom.color = ContextCompat.getColor(this, R.color.colorAccent)
+            }
+        }
+        lavaDrawableTop.setPaint(paintLavaTop)
+        lavaDrawable.setPaint(paintLavaBottom)
     }
 
     private fun getDownAnimation(): ValueAnimator {

@@ -51,21 +51,23 @@
     <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageView26"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardsContainer"
-            android:layout_marginTop="32dp"/>
-
-    <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
             android:padding="20dp"
-            app:srcCompat="@drawable/ic_add_black_24dp"
+            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp"
             android:id="@+id/testLavaImageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView26"/>
+
+    <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageView26"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="20dp"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardsContainer"
+            android:layout_marginTop="32dp"/>
 
     <LinearLayout
             android:id="@+id/cardsContainer"
