@@ -2,6 +2,7 @@ package com.rdo.octo.motionlayouttest
 
 import android.graphics.*
 import android.graphics.drawable.Drawable
+import android.util.Log
 import kotlin.math.*
 
 class LavaDrawable(private val paint: Paint, private val width: Int, private val height: Int) : Drawable() {
@@ -11,7 +12,7 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
     fun setDistance(newDistance: Int = distance) {
         if (newDistance > 3 * height) {
             // Todo animate to 0
-        } else if (abs(this.distance - newDistance) > 5) {
+        } else if (abs(this.distance - newDistance) > 2) {
             this.distance = newDistance
             callback?.invalidateDrawable(this)
         }
@@ -29,7 +30,7 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
             }
             path.close()
             canvas.drawPath(path, paint)
-        } else if (distance > 0){
+        } else if (distance > 0) {
             val path = Path()
             val r = height / 2
             val y1 = (distance / 2).toFloat()
@@ -58,6 +59,19 @@ class LavaDrawable(private val paint: Paint, private val width: Int, private val
             val b = endCircleAngle
             path.moveTo(width / 2f, height / 2f)
             drawCircleDown(startCircleAngle, endCircleAngle, path)
+            Log.d("YOLO", "x1 est egal a $x1, b vaut ${b / PI * 180}")
+            for (i in ((PI- b - 1) * 100).toInt()..(PI * 100).toInt()) {
+                val angle = i / 100.toDouble()
+                val x = width / 2 + (cos(angle) * r / 2f) + x1
+                val y = (r / -2f * sin(angle)) + (height / 2) - y1
+                path.lineTo(x.toFloat(), y.toFloat())
+            }
+            for (i in 0..(-b + 1).toInt() * 100) {
+                val angle = i / 100.toDouble()
+                val x = width / 2 + (cos(angle) * r / 2f) - x1
+                val y = (r / -2f * sin(angle)) + (height / 2) - y1
+                path.lineTo(x.toFloat(), y.toFloat())
+            }
             path.close()
             canvas.drawPath(path, paint)
         }
