@@ -31,9 +31,15 @@ class BlobScreenActivity : AppCompatActivity() {
             drawableBlob = BlobDrawable(paint, containerBlob.width, containerBlob.height, seekBar2.thumb.intrinsicWidth)
             containerBlob.background = drawableBlob
         }
+        pinkBackgroundContainer.post {
+            pinkBackgroundContainer.translationX = -1f * pinkBackgroundContainer.width
+        }
         seekBar2.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 drawableBlob.setProgress(progress)
+                val progressInPx = progress.toFloat() / 1000f * containerBlob.width
+                pinkBackgroundContainer.translationX = -1f * pinkBackgroundContainer.width + progressInPx
+                whiteBackgroundContainer.translationX = progressInPx
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
