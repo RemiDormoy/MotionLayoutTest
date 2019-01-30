@@ -1,6 +1,7 @@
 package com.rdo.octo.motionlayouttest
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -58,6 +59,7 @@ class SeekActivity : AppCompatActivity() {
             }
 
         })
+        buttonNext.setOnClickListener { startActivity(Intent(this, BlobScreenActivity::class.java)) }
     }
 }
 
