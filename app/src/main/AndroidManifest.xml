@@ -21,6 +21,7 @@
         <activity android:name=".CalendarActivity"/>
         <activity android:name=".TimeActivity"/>
         <activity android:name=".ButtonActivity"/>
+        <activity android:name=".SeekActivity"/>
     </application>
 
 </manifest>

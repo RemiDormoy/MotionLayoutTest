@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         button3.setOnClickListener {
             startActivity(Intent(this, ButtonActivity::class.java))
         }
+        seekButton.setOnClickListener {
+            startActivity(Intent(this, SeekActivity::class.java))
+        }
         button.setOnClickListener {
             startActivity(Intent(this, Rotation3DActivity::class.java))
         }

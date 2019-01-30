@@ -135,5 +135,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/button3" app:layout_constraintEnd_toStartOf="@+id/buttonTime"
             android:layout_marginEnd="8dp" app:layout_constraintTop_toTopOf="parent"/>
+    <Button
+            android:text="Seekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekButton" app:layout_constraintEnd_toStartOf="@+id/button3" android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
