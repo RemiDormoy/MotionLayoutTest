@@ -32,4 +32,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="What is your weight goal ? "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" android:layout_marginEnd="24dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
+            android:fontFamily="monospace"
+            app:layout_constraintHorizontal_bias="0.496" android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/weightTextView"/>
+    <TextView
+            android:text="100 kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/weightTextView" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:fontFamily="monospace"
+            app:layout_constraintHorizontal_bias="0.498" android:layout_marginBottom="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/drawView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

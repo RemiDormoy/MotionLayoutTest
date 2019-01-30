@@ -31,6 +31,8 @@ class SeekActivity : AppCompatActivity() {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 drawable.setProgress(progress)
+                val weight = 50 + progress / 100
+                weightTextView.text = "$weight kg"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
