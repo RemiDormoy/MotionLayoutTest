@@ -45,6 +45,7 @@ class SeekActivity : AppCompatActivity() {
 class SeekDrawable(private var paint: Paint, private val width: Int, private val height: Int) : Drawable() {
 
     private var progress = 5000
+    private val maxHeight = height - 20
 
     override fun setAlpha(alpha: Int) {
         paint.alpha = alpha
@@ -58,19 +59,19 @@ class SeekDrawable(private var paint: Paint, private val width: Int, private val
     override fun draw(canvas: Canvas) {
         val xPeak = (progress * width / 10000).toFloat()
         val path = Path()
-        path.moveTo(0f, height.toFloat())
+        path.moveTo(0f, maxHeight.toFloat())
         for (i in 0..width) {
             val x = i.toFloat()
             val value = 20f / (20f + ((x / 20f - xPeak /20f) * (x/20f - xPeak/20f)))
-            val heightWithOffset = value * height + 5f
-            val y = height - minOf(heightWithOffset, height.toFloat())
+            val heightWithOffset = value * maxHeight + 5f
+            val y = height - heightWithOffset
             path.lineTo(i.toFloat(), y)
         }
         for (i in width downTo 0) {
             val x = i.toFloat()
             val value = 20f / (20f + ((x / 20f - xPeak /20f) * (x/20f - xPeak/20f)))
-            val heightWithOffset = value * height - 5f
-            val y = height - maxOf(minOf(heightWithOffset, height.toFloat() + 10f), 0f)
+            val heightWithOffset = value * maxHeight - 5f
+            val y = height - heightWithOffset
             path.lineTo(i.toFloat(), y)
         }
         path.close()
