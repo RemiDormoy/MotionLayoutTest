@@ -1,8 +1,11 @@
 package com.rdo.octo.motionlayouttest
 
+import android.animation.ObjectAnimator
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.BounceInterpolator
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -31,11 +34,25 @@ class SeekActivity : AppCompatActivity() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // Do nothing
+                val animator = ObjectAnimator.ofInt(0, drawView.height - 20)
+                animator.duration = 300
+                animator.interpolator = AccelerateDecelerateInterpolator()
+                animator.addUpdateListener {
+                    val value = it.animatedValue as Int
+                    drawable.setMaxHeight(value)
+                }
+                animator.start()
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // Do nothing
+                val animator = ObjectAnimator.ofInt(drawView.height - 20, 0)
+                animator.duration = 500
+                animator.interpolator = BounceInterpolator()
+                animator.addUpdateListener {
+                    val value = it.animatedValue as Int
+                    drawable.setMaxHeight(value)
+                }
+                animator.start()
             }
 
         })
@@ -45,10 +62,15 @@ class SeekActivity : AppCompatActivity() {
 class SeekDrawable(private var paint: Paint, private val width: Int, private val height: Int) : Drawable() {
 
     private var progress = 5000
-    private val maxHeight = height - 20
+    private var maxHeight = 0
 
     override fun setAlpha(alpha: Int) {
         paint.alpha = alpha
+    }
+
+    fun setMaxHeight(maxHeight: Int) {
+        this.maxHeight = maxHeight
+        callback?.invalidateDrawable(this)
     }
 
     fun setProgress(progress: Int) {
@@ -64,14 +86,14 @@ class SeekDrawable(private var paint: Paint, private val width: Int, private val
             val x = i.toFloat()
             val value = 20f / (20f + ((x / 20f - xPeak /20f) * (x/20f - xPeak/20f)))
             val heightWithOffset = value * maxHeight + 5f
-            val y = height - heightWithOffset
+            val y = maxHeight - heightWithOffset + 10
             path.lineTo(i.toFloat(), y)
         }
         for (i in width downTo 0) {
             val x = i.toFloat()
             val value = 20f / (20f + ((x / 20f - xPeak /20f) * (x/20f - xPeak/20f)))
             val heightWithOffset = value * maxHeight - 5f
-            val y = height - heightWithOffset
+            val y = maxHeight - heightWithOffset + 10
             path.lineTo(i.toFloat(), y)
         }
         path.close()
