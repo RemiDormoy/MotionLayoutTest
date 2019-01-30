@@ -1,5 +1,6 @@
 package com.rdo.octo.motionlayouttest
 
+import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.graphics.*
 import android.graphics.drawable.Drawable
@@ -9,7 +10,9 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_blob.*
+import kotlin.math.PI
 import kotlin.math.abs
+import kotlin.math.sin
 
 class BlobScreenActivity : AppCompatActivity() {
 
@@ -48,6 +51,37 @@ class BlobScreenActivity : AppCompatActivity() {
                         val value = it.animatedValue as Int
                         seekBar2.progress = value
                     }
+                    animator.addListener(object : Animator.AnimatorListener {
+                        override fun onAnimationRepeat(animation: Animator?) {
+                            // Do nothing
+                        }
+
+                        override fun onAnimationEnd(animation: Animator?) {
+                            seekBar2.postDelayed({
+                                val animatorFade = ObjectAnimator.ofFloat(0f, 2f)
+                                animatorFade.duration = 1000
+                                animatorFade.addUpdateListener {
+                                    val value = it.animatedValue as Float
+                                    if (value < 1f) {
+                                        containerBlob.alpha = 1f - value
+                                    } else {
+                                        containerBlob.alpha = value - 1f
+                                        seekBar2.progress = 0
+                                    }
+                                }
+                                animatorFade.start()
+                            }, 500)
+                        }
+
+                        override fun onAnimationCancel(animation: Animator?) {
+                            // Do nothing
+                        }
+
+                        override fun onAnimationStart(animation: Animator?) {
+                            // Do nothing
+                        }
+
+                    })
                     animator.start()
                 } else {
                     val animator = ObjectAnimator.ofInt(progress, 0)
@@ -84,11 +118,11 @@ class BlobDrawable(private var paint: Paint, private val width: Int, private val
         val progressInPx = progress.toFloat() / 1000f * width
         val path = Path()
         path.moveTo(0f, 0f)
-        val baseX = maxOf(20f, 2 * progressInPx - width)
+        val baseX = maxOf(20f, progressInPx / 2 *(1 + sin(((progress.toFloat() * PI / 1000) - (PI/2)))).toFloat())
         path.lineTo(baseX, 0f)
         for (i in 0.. height) {
             val y = i.toFloat()
-            val value = ((progressInPx + offset + 50) *(20f / (20f + ((y / 20f - yPeak /20f) * (y/20f - yPeak/20f))))) + baseX
+            val value = ((progressInPx - baseX + offset + 20f) *(20f / (20f + ((y / 20f - yPeak /20f) * (y/20f - yPeak/20f))))) + baseX
             path.lineTo(value.toFloat(), y)
         }
         path.lineTo(baseX, height.toFloat())
