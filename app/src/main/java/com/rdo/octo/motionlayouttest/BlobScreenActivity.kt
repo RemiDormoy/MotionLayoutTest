@@ -28,8 +28,7 @@ class BlobScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_blob)
         paint.color = ContextCompat.getColor(this, R.color.colorAccent)
         containerBlob.post {
-            drawableBlob = BlobDrawable(paint, containerBlob.width, containerBlob.height)
-            drawableBlob.setThumbSize(seekBar2.thumb.intrinsicWidth)
+            drawableBlob = BlobDrawable(paint, containerBlob.width, containerBlob.height, seekBar2.thumb.intrinsicWidth)
             containerBlob.background = drawableBlob
         }
         seekBar2.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -99,15 +98,15 @@ class BlobScreenActivity : AppCompatActivity() {
     }
 }
 
-class BlobDrawable(private var paint: Paint, private val width: Int, private val height: Int) : Drawable() {
+class BlobDrawable(private var paint: Paint, private val width: Int, private val height: Int, private val offset: Int) :
+    Drawable() {
     override fun setAlpha(alpha: Int) {
         paint.alpha = alpha
     }
 
-    private val yPeak = height.toFloat() * 0.75 - 30
+    private val yPeak = height.toFloat() * 0.75 - (offset / 3f)
 
     private var progress = 0
-    private var offset = 0
 
     fun setProgress(progress: Int) {
         this.progress = progress
@@ -118,11 +117,14 @@ class BlobDrawable(private var paint: Paint, private val width: Int, private val
         val progressInPx = progress.toFloat() / 1000f * width
         val path = Path()
         path.moveTo(0f, 0f)
-        val baseX = maxOf(20f, progressInPx / 2 *(1 + sin(((progress.toFloat() * PI / 1000) - (PI/2)))).toFloat())
+        val basXWithoutOffset = progressInPx / 2 * (1 + sin(((progress.toFloat() * PI / 1000) - (PI / 2)))).toFloat()
+        val baseX = maxOf(20f, basXWithoutOffset)
         path.lineTo(baseX, 0f)
-        for (i in 0.. height) {
+        for (i in 0..height) {
             val y = i.toFloat()
-            val value = ((progressInPx - baseX + offset + 20f) *(20f / (20f + ((y / 20f - yPeak /20f) * (y/20f - yPeak/20f))))) + baseX
+            val offsetWantedForButton = offset * (1 - (progress.toFloat() / 1000f))
+            val maxWidthOfBlob = progressInPx - baseX + offsetWantedForButton + 20f
+            val value = (maxWidthOfBlob * (25f / (25f + ((y / 25f - yPeak / 25f) * (y / 25f - yPeak / 25f))))) + baseX
             path.lineTo(value.toFloat(), y)
         }
         path.lineTo(baseX, height.toFloat())
@@ -145,9 +147,5 @@ class BlobDrawable(private var paint: Paint, private val width: Int, private val
 
     fun setPaint(paint: Paint) {
         this.paint = paint
-    }
-
-    fun setThumbSize(width: Int) {
-        this.offset = width
     }
 }
