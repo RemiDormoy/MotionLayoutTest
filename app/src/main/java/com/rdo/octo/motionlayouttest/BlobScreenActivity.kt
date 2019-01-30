@@ -23,9 +23,10 @@ class BlobScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blob)
-        paint.color = ContextCompat.getColor(this, R.color.colorPrimary)
+        paint.color = ContextCompat.getColor(this, R.color.colorAccent)
         containerBlob.post {
             drawableBlob = BlobDrawable(paint, containerBlob.width, containerBlob.height)
+            drawableBlob.setThumbSize(seekBar2.thumb.intrinsicWidth)
             containerBlob.background = drawableBlob
         }
         seekBar2.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -69,9 +70,10 @@ class BlobDrawable(private var paint: Paint, private val width: Int, private val
         paint.alpha = alpha
     }
 
-    private val yPeak = width.toFloat() * 0.75
+    private val yPeak = height.toFloat() * 0.75 - 30
 
     private var progress = 0
+    private var offset = 0
 
     fun setProgress(progress: Int) {
         this.progress = progress
@@ -84,6 +86,11 @@ class BlobDrawable(private var paint: Paint, private val width: Int, private val
         path.moveTo(0f, 0f)
         val baseX = maxOf(20f, 2 * progressInPx - width)
         path.lineTo(baseX, 0f)
+        for (i in 0.. height) {
+            val y = i.toFloat()
+            val value = ((progressInPx + offset + 50) *(20f / (20f + ((y / 20f - yPeak /20f) * (y/20f - yPeak/20f))))) + baseX
+            path.lineTo(value.toFloat(), y)
+        }
         path.lineTo(baseX, height.toFloat())
         path.lineTo(0f, height.toFloat())
         path.close()
@@ -104,5 +111,9 @@ class BlobDrawable(private var paint: Paint, private val width: Int, private val
 
     fun setPaint(paint: Paint) {
         this.paint = paint
+    }
+
+    fun setThumbSize(width: Int) {
+        this.offset = width
     }
 }
