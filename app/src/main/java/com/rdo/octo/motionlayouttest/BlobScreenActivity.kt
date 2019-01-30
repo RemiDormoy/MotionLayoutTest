@@ -75,7 +75,7 @@ class BlobScreenActivity : AppCompatActivity() {
                                     }
                                 }
                                 animatorFade.start()
-                            }, 500)
+                            }, 3000)
                         }
 
                         override fun onAnimationCancel(animation: Animator?) {
