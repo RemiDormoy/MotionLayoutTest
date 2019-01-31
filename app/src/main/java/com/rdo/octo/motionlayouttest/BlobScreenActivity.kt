@@ -23,6 +23,10 @@ class BlobScreenActivity : AppCompatActivity() {
 
     private lateinit var drawableBlob: BlobDrawable
 
+    private var initialYPeak = -1
+
+    private val initialSeekBarPosition: Int by lazy { seekBar2.y.toInt() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blob)
@@ -101,6 +105,12 @@ class BlobScreenActivity : AppCompatActivity() {
             }
 
         })
+        seekBar2.setOnTouchListener { v, event ->
+            val newYpeak = (event.rawY - seekBar2.height).toDouble()
+            drawableBlob.yPeak = newYpeak
+            seekBar2.translationY = newYpeak.toFloat() - initialSeekBarPosition - (seekBar2.height / 2)
+            false
+        }
     }
 }
 
@@ -110,7 +120,11 @@ class BlobDrawable(private var paint: Paint, private val width: Int, private val
         paint.alpha = alpha
     }
 
-    private val yPeak = height.toFloat() * 0.75 - (offset / 3f)
+    private val initialyPeak = height.toFloat() * 0.75 - (offset / 3f)
+
+    var yPeakTranslation = 0
+
+    var yPeak = initialyPeak + yPeakTranslation
 
     private var progress = 0
 
