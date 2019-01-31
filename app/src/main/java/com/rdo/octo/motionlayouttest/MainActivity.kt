@@ -1,6 +1,5 @@
 package com.rdo.octo.motionlayouttest
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,10 +8,7 @@ import android.view.MotionEvent
 import android.view.MotionEvent.ACTION_DOWN
 import android.view.MotionEvent.ACTION_UP
 import android.view.View
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.BounceInterpolator
-import android.view.animation.DecelerateInterpolator
-import android.view.animation.OvershootInterpolator
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,18 +17,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        button3.setOnClickListener {
-            startActivity(Intent(this, ButtonActivity::class.java))
-        }
-        seekButton.setOnClickListener {
-            startActivity(Intent(this, SeekActivity::class.java))
-        }
-        button.setOnClickListener {
-            startActivity(Intent(this, Rotation3DActivity::class.java))
-        }
-        buttonTime.setOnClickListener {
-            startActivity(Intent(this, TimeActivity::class.java))
+        setContentView(R.layout.activity_home)
+        navigationView.setNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.nav_button -> startActivity(Intent(this, ButtonActivity::class.java))
+                R.id.nav_tuto -> startActivity(Intent(this, BlobScreenActivity::class.java))
+                R.id.nav_seekbar -> startActivity(Intent(this, SeekActivity::class.java))
+                R.id.nav_calendar -> startActivity(Intent(this, CalendarActivity::class.java))
+                R.id.nav_rotation -> startActivity(Intent(this, Rotation3DActivity::class.java))
+                R.id.nav_zoom -> startActivity(Intent(this, TimeActivity::class.java))
+            }
+            true
         }
         motion.setOnTouchListener { v, event ->
             when (event.action) {

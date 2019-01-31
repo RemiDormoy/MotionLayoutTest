@@ -59,7 +59,6 @@ class SeekActivity : AppCompatActivity() {
             }
 
         })
-        buttonNext.setOnClickListener { startActivity(Intent(this, BlobScreenActivity::class.java)) }
     }
 }
 

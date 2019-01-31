@@ -50,11 +50,4 @@
             android:fontFamily="monospace"
             app:layout_constraintHorizontal_bias="0.498" android:layout_marginBottom="80dp"
             app:layout_constraintBottom_toTopOf="@+id/drawView"/>
-    <Button
-            android:text="Next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonNext"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="24dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

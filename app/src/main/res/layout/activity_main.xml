@@ -117,29 +117,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-    <Button
-            android:text="Next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="16dp"
-            tools:layout_editor_absoluteX="295dp" android:id="@+id/button"/>
-    <Button
-            android:text="Time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/buttonTime"/>
-
-    <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button3" app:layout_constraintEnd_toStartOf="@+id/buttonTime"
-            android:layout_marginEnd="8dp" app:layout_constraintTop_toTopOf="parent"/>
-    <Button
-            android:text="Seekbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekButton" app:layout_constraintEnd_toStartOf="@+id/button3" android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

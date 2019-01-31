@@ -29,9 +29,6 @@ class Rotation3DActivity : AppCompatActivity() {
         image4.setOnClickListener {
             animateView4()
         }
-        button2.setOnClickListener {
-            startActivity(Intent(this, CalendarActivity::class.java))
-        }
     }
 
     private fun animateView() {

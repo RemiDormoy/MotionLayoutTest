@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_tuto"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Blob tutorial" />
+        <item
+                android:id="@+id/nav_button"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Jumping button" />
+        <item
+                android:id="@+id/nav_seekbar"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Seekbar" />
+        <item
+                android:id="@+id/nav_calendar"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Calendar" />
+        <item
+                android:id="@+id/nav_rotation"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="3D rotation" />
+        <item
+                android:id="@+id/nav_zoom"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Zoom" />
+    </group>
+</menu>
