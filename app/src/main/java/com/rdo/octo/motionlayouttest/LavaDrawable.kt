@@ -9,6 +9,11 @@ class LavaDrawable(private var paint: Paint, private val width: Int, private val
 
     private var distance = 0
 
+    fun invalidate() {
+        callback?.invalidateDrawable(this)
+
+    }
+
     fun setDistance(newDistance: Int = distance) {
         if (newDistance > 3 * height) {
             // Todo animate to 0

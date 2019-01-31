@@ -55,8 +55,11 @@ class ButtonActivity : AppCompatActivity() {
         floatingActionButton.setOnClickListener {
             animateButton()
         }
-        paint.color = ContextCompat.getColor(this, R.color.colorPrimary)
-        paintLavaBottom.color = ContextCompat.getColor(this, R.color.color2)
+        val primaryColor = ContextCompat.getColor(this, R.color.colorPrimary)
+        val color2 = ContextCompat.getColor(this, R.color.color2)
+        val colorMiddle = ContextCompat.getColor(this, R.color.colorMiddle)
+        paint.color = primaryColor
+        paintLavaBottom.color = color2
         paintLavaTop.color = ContextCompat.getColor(this, R.color.colorPrimary)
         bottomView.post {
             drawable = MyDrawable(paint, floatingActionButton.height).apply {
@@ -67,6 +70,7 @@ class ButtonActivity : AppCompatActivity() {
         }
         testLavaImageView.post {
             lavaDrawableTop = LavaDrawable(paintLavaTop, testLavaImageView.width, testLavaImageView.height)
+            setLevel1paints()
             imageView26.setBackground(lavaDrawableTop)
             lavaDrawable = LavaDrawable(paintLavaBottom, testLavaImageView.width, testLavaImageView.height)
             testLavaImageView.setBackground(lavaDrawable)
@@ -106,6 +110,80 @@ class ButtonActivity : AppCompatActivity() {
         })
     }
 
+    private fun setLevel1paints() {
+        val primaryColor = ContextCompat.getColor(this, R.color.colorPrimary)
+        val color2 = ContextCompat.getColor(this, R.color.color2)
+        val colorMiddle = ContextCompat.getColor(this, R.color.colorMiddle)
+        paintLavaTop.shader = LinearGradient(
+            0f,
+            0f,
+            0f,
+            testLavaImageView.height.toFloat() * 1f,
+            primaryColor,
+            colorMiddle,
+            Shader.TileMode.REPEAT
+        )
+        paintLavaBottom.shader = LinearGradient(
+            0f,
+            0f,
+            0f,
+            testLavaImageView.height * 1f,
+            colorMiddle,
+            color2,
+            Shader.TileMode.REPEAT
+        )
+    }
+
+    private fun setLevel2paints() {
+        val primaryColor = ContextCompat.getColor(this, R.color.color2)
+        val color2 = ContextCompat.getColor(this, R.color.color3)
+        val colorMiddle = ContextCompat.getColor(this, R.color.colorMiddle2)
+        paintLavaTop.shader = LinearGradient(
+            0f,
+            0f,
+            0f,
+            testLavaImageView.height.toFloat() * 1f,
+            primaryColor,
+            colorMiddle,
+            Shader.TileMode.REPEAT
+        )
+        paintLavaBottom.shader = LinearGradient(
+            0f,
+            0f,
+            0f,
+            testLavaImageView.height * 1f,
+            colorMiddle,
+            color2,
+            Shader.TileMode.REPEAT
+        )
+    }
+
+
+
+    private fun setLevel3paints() {
+        val primaryColor = ContextCompat.getColor(this, R.color.color3)
+        val color2 = ContextCompat.getColor(this, R.color.color3)
+        val colorMiddle = ContextCompat.getColor(this, R.color.color3)
+        paintLavaTop.shader = LinearGradient(
+            0f,
+            0f,
+            0f,
+            testLavaImageView.height.toFloat() * 1f,
+            primaryColor,
+            colorMiddle,
+            Shader.TileMode.REPEAT
+        )
+        paintLavaBottom.shader = LinearGradient(
+            0f,
+            0f,
+            0f,
+            testLavaImageView.height * 1f,
+            colorMiddle,
+            color2,
+            Shader.TileMode.REPEAT
+        )
+    }
+
     private fun animateButton() {
         val down = getDownAnimation()
         val up = getUpAnimation(down)
@@ -121,16 +199,17 @@ class ButtonActivity : AppCompatActivity() {
         if (cardsLoaded > 2) {
             testLavaImageView.background = lavaDrawable
             imageView26.background = lavaDrawableTop
-            cardsLoaded = 2
         }
-        cardsLoaded -= 1
+        cardsLoaded = cardsLoaded - 1
         setPaints()
+        lavaDrawable.invalidate()
+        lavaDrawableTop.invalidate()
     }
 
     private fun getColorForFrame() = when (cardsLoaded) {
         1 -> ContextCompat.getColor(this, R.color.colorPrimary)
         2 -> ContextCompat.getColor(this, R.color.color2)
-        else -> ContextCompat.getColor(this, R.color.colorAccent)
+        else -> ContextCompat.getColor(this, R.color.color3)
     }
 
     private fun addOneCard() {
@@ -201,18 +280,9 @@ class ButtonActivity : AppCompatActivity() {
 
     private fun setPaints() {
         when (cardsLoaded) {
-            0 -> {
-                paintLavaTop.color = ContextCompat.getColor(this, R.color.colorPrimary)
-                paintLavaBottom.color = ContextCompat.getColor(this, R.color.color2)
-            }
-            1 -> {
-                paintLavaTop.color = ContextCompat.getColor(this, R.color.color2)
-                paintLavaBottom.color = ContextCompat.getColor(this, R.color.colorAccent)
-            }
-            2 -> {
-                paintLavaTop.color = ContextCompat.getColor(this, R.color.colorAccent)
-                paintLavaBottom.color = ContextCompat.getColor(this, R.color.colorAccent)
-            }
+            0 -> setLevel1paints()
+            1 -> setLevel2paints()
+            2 -> setLevel3paints()
         }
         lavaDrawableTop.setPaint(paintLavaTop)
         lavaDrawable.setPaint(paintLavaBottom)
