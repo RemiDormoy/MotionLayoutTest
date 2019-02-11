@@ -25,5 +25,10 @@
                 android:id="@+id/nav_zoom"
                 android:icon="@drawable/ic_directions_run_black_24dp"
                 android:title="Zoom" />
+
+        <item
+                android:id="@+id/nav_garbage"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Garbage" />
     </group>
 </menu>

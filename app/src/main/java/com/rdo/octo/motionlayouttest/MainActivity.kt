@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_calendar -> startActivity(Intent(this, CalendarActivity::class.java))
                 R.id.nav_rotation -> startActivity(Intent(this, Rotation3DActivity::class.java))
                 R.id.nav_zoom -> startActivity(Intent(this, TimeActivity::class.java))
+                R.id.nav_garbage -> startActivity(Intent(this, GarbageActivity::class.java))
             }
             true
         }

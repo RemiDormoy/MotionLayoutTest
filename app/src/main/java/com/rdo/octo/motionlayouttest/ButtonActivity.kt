@@ -6,25 +6,16 @@ import android.graphics.*
 import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.GONE
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
 import android.view.animation.DecelerateInterpolator
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_button.*
 import kotlin.math.cos
 import kotlin.math.sin
-import kotlin.math.tan
-import android.view.ViewAnimationUtils
-import android.animation.Animator
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
 import kotlinx.android.synthetic.main.cell_card_bubble.view.*
 
 
@@ -322,18 +313,12 @@ class MyDrawable(private val paint: Paint, val buttonHeightInit: Int) : Drawable
         val path = Path()
         path.moveTo(0f, height.toFloat())
         path.lineTo(0f, 0f)
-        path.lineTo((width / 2f) - (buttonWidth / 2) - 30, 0f)
-        //path.arcTo((width / 2f) - (buttonHeight / 2) - 20, 0f,(width / 2f) + (buttonHeight / 2) + 20,  buttonHeight + 20f, 180f, 360f, false)
-        val x1 = (width / 2f) - (buttonWidth / 2) - 30
-        val x2 = (width / 2f) + (buttonWidth / 2) + 30
-        for (i in 0..314) {
-            val progress = (cos((i + 314) / 100f) + 1f) / 2f
-            path.lineTo(
-                (x2 * progress) + ((1 - progress) * x1),
-                maxOf(sin(i.toFloat() / 100f) * (((buttonHeight / 2) + 30f) + translation), 0f)
-            )
+        for (i in 314..628) {
+            val angle = i.toFloat() / 100f
+            val radiusX = (buttonWidth / 2f) + 30
+            val radiusY = (buttonHeight / 2f) + 30
+            path.lineTo((width / 2f) + (cos(angle) * radiusX), (-sin(angle) * radiusY) + translation)
         }
-        path.lineTo((width / 2f) + (buttonWidth / 2) + 30, 0f)
         path.lineTo(width.toFloat(), 0f)
         path.lineTo(width.toFloat(), height.toFloat())
         path.close()
