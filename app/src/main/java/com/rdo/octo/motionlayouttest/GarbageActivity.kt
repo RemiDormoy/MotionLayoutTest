@@ -216,7 +216,6 @@ class RocketBackground(private val height: Int, private val width: Int, private 
         animator.duration = 1000
         val animator2 = ValueAnimator.ofInt(translation, 0)
         animator2.duration = 1000
-        animator2.interpolator = BounceInterpolator()
         animator2.addUpdateListener {
             val value = it.animatedValue as Int
             setTranslation(value)
