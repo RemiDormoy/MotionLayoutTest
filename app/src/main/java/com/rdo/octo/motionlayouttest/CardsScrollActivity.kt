@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
+import android.util.TypedValue
 import android.view.*
 import android.view.animation.BounceInterpolator
 import android.view.animation.DecelerateInterpolator
@@ -63,8 +64,8 @@ class CardsScrollActivity : AppCompatActivity() {
         cardsAdapter.viewList.forEach {
             it.pivotY = 0f
             it.rotationX = 20f * (yolo / maxTranslation)
-            it.scaleX = 1f - (yolo / yoloViewGroup.height)
-            it.scaleY = 1f - (yolo / yoloViewGroup.height)
+            it.scaleX = 1f - (yolo / yoloViewGroup.height / 2)
+            it.scaleY = 1f - (yolo / yoloViewGroup.height / 2)
         }
     }
 
@@ -205,6 +206,11 @@ class CardsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        // Do nothing
+        /*val resources = holder.itemView.context.resources
+        holder.itemView.elevation = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            8f + (2 *(list.size - position)),
+            resources.getDisplayMetrics()
+        )*/
     }
 }
