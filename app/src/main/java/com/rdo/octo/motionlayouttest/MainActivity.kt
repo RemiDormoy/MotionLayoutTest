@@ -27,10 +27,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_rotation -> startActivity(Intent(this, Rotation3DActivity::class.java))
                 R.id.nav_zoom -> startActivity(Intent(this, TimeActivity::class.java))
                 R.id.nav_garbage -> startActivity(Intent(this, GarbageActivity::class.java))
+                R.id.nav_cards -> startActivity(Intent(this, CardsScrollActivity::class.java))
             }
             true
         }
-        motion.setOnTouchListener { v, event ->
+        motion.setOnTouchListener { _, event ->
             when (event.action) {
                 ACTION_DOWN -> isImageTouched = true
                 ACTION_UP -> isImageTouched = false
@@ -71,12 +72,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(p0: MotionLayout, constraintSet: Int) {
-                val text: String = when (constraintSet) {
-                    R.id.endLeft -> "Ça te fait kiffer !"
-                    R.id.endRight -> "Ça te fait vomir !"
-                    else -> "Inconnu"
-                }
-                //Toast.makeText(this@MainActivity, text, Toast.LENGTH_LONG).show()
                 if (name1.text.toString() == "Paris") {
                     picture1.setImageResource(R.drawable.sanfrancisco)
                     name1.text = "New York"

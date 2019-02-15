@@ -30,5 +30,9 @@
                 android:id="@+id/nav_garbage"
                 android:icon="@drawable/ic_directions_run_black_24dp"
                 android:title="Garbage" />
+        <item
+                android:id="@+id/nav_cards"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Card scroll" />
     </group>
 </menu>

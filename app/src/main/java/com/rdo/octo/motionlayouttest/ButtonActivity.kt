@@ -48,7 +48,6 @@ class ButtonActivity : AppCompatActivity() {
         }
         val primaryColor = ContextCompat.getColor(this, R.color.colorPrimary)
         val color2 = ContextCompat.getColor(this, R.color.color2)
-        val colorMiddle = ContextCompat.getColor(this, R.color.colorMiddle)
         paint.color = primaryColor
         paintLavaBottom.color = color2
         paintLavaTop.color = ContextCompat.getColor(this, R.color.colorPrimary)

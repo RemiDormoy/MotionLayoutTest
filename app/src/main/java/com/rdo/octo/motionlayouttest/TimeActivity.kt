@@ -8,8 +8,6 @@ import android.transition.TransitionManager
 import android.view.MotionEvent
 import kotlinx.android.synthetic.main.state_1.*
 import android.view.ScaleGestureDetector
-import android.widget.Toast
-
 
 class TimeActivity : AppCompatActivity() {
 
