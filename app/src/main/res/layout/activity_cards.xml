@@ -12,12 +12,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.rdo.octo.motionlayouttest.YoloRecyclerView
+        <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cardsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-        </com.rdo.octo.motionlayouttest.YoloRecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </com.rdo.octo.motionlayouttest.YoloViewGroup>
 
@@ -33,6 +33,7 @@
     <TextView
             android:text="Attendez ça load"
             android:layout_width="wrap_content"
+            android:textSize="16sp"
             android:textColor="@android:color/white"
             android:layout_height="wrap_content" android:id="@+id/textView28" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
