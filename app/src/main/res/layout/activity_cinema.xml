@@ -2,7 +2,31 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/fakeCardView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="54dp"
+            android:layout_marginStart="54dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp">
+
+        <ImageView
+                android:id="@+id/fakeImageView"
+                android:src="@drawable/guardians"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.viewpager.widget.ViewPager
             android:id="@+id/cinemaViewPager"
@@ -14,55 +38,454 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.cardview.widget.CardView
+            android:id="@+id/firstCardViewCinema"
             android:layout_width="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cinemaViewPager"
-            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/fakeCardView"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="20dp"
             android:layout_marginBottom="64dp"
             android:layout_marginEnd="54dp"
             android:layout_marginStart="54dp"
             android:layout_height="0dp">
 
-        <LinearLayout
-                android:id="@+id/contentCinemaTextView"
-                android:padding="32dp"
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-            <TextView
-                    android:id="@+id/cinemaTitleTextView"
+            <LinearLayout
+                    android:id="@+id/contentCinemaTextView"
+                    android:padding="32dp"
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:textSize="24sp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/arbutus"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-            <TextView
-                    android:id="@+id/cinemaSummaryTextView"
+                <TextView
+                        android:id="@+id/cinemaTitleTextView"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/arbutus"/>
+
+                <TextView
+                        android:id="@+id/cinemaSummaryTextView"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/arbutus"/>
+
+                <TextView
+                        android:background="?attr/selectableItemBackground"
+                        android:fontFamily="@font/arbutus"
+                        android:id="@+id/choseTimeButton"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Choose time"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/chooseTimeContainer"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="16dp"
+                    android:alpha="0"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/arbutus"/>
+                    android:visibility="gone"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-            <TextView
-                    android:background="?attr/selectableItemBackground"
-                    android:fontFamily="@font/arbutus"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorPrimary"
-                    android:text="Choose time"
+                <Button
+                        android:id="@+id/buttonTime9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9h"/>
+
+                <Button
+                        android:id="@+id/buttonTime8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8h"/>
+            </LinearLayout>
+        </FrameLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+            android:layout_width="0dp"
+            android:id="@+id/placesCardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fakeCardView"
+            android:layout_marginTop="16dp"
+            android:visibility="visible"
+            android:layout_marginBottom="64dp"
+            android:layout_marginEnd="54dp"
+            android:layout_marginStart="54dp"
+            android:layout_height="0dp">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal|bottom"
+                    android:orientation="horizontal"
+                    android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"/>
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat9"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat10"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat11"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat12"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat13"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat14"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat15"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat16"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat17"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat18"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat19"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat20"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat21"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat22"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat23"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat24"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+
+                    <View
+                            android:id="@+id/seat25"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

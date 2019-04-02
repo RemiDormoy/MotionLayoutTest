@@ -19,7 +19,7 @@ class CinemaPageFragment(private val position: Int) : Fragment() {
     }
 }
 
-private fun Int.toRessource() = when (this) {
+fun Int.toRessource() = when (this) {
     0 -> R.drawable.bond
     1 -> R.drawable.ring
     2 -> R.drawable.hp

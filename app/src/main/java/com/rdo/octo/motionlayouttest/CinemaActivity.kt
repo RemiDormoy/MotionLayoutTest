@@ -1,6 +1,11 @@
 package com.rdo.octo.motionlayouttest
 
+import android.animation.ValueAnimator
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_cinema.*
@@ -11,7 +16,7 @@ class CinemaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cinema)
-        cinemaViewPager.setPadding(150, 0, 150, 50)
+        cinemaViewPager.setPadding(54.toDp(resources).toInt(), 0, 54.toDp(resources).toInt(), 0)
         cinemaViewPager.clipToPadding = false
         cinemaViewPager.pageMargin = 50
         cinemaViewPager.adapter = CinemaViewPagerAdapter(supportFragmentManager)
@@ -34,6 +39,39 @@ class CinemaActivity : AppCompatActivity() {
 
         })
         cinemaViewPager.currentItem = 3
+        choseTimeButton.setOnClickListener {
+            moveToTime()
+        }
+        listOf(buttonTime8, buttonTime9).forEach { it.setOnClickListener {
+            moveToSeats()
+        } }
+    }
+
+    private fun moveToSeats() {
+        placesCardView.visibility = VISIBLE
+        fakeCardView.elevation = 0f
+        val ofFloat = ValueAnimator.ofFloat(0f, 50f)
+        ofFloat.addUpdateListener {
+            val value = it.animatedValue as Float
+            firstCardViewCinema.scaleX = (100f - (value / 3f)) / 100f
+            firstCardViewCinema.scaleY = (100f - (value / 1.5f)) / 100f
+            placesCardView.scaleX = (100f - (value / 3f)) / 100f
+            placesCardView.scaleY = (100f - (value / 1.5f)) / 100f
+            firstCardViewCinema.alpha = 1 - (value / 20f)
+            placesCardView.alpha = value / 50f
+
+        }
+        ofFloat.duration = 1000
+        ofFloat.start()
+    }
+
+    private fun moveToTime() {
+        fakeImageView.setImageResource(cinemaViewPager.currentItem.toRessource())
+        fakeCardView.visibility = VISIBLE
+        chooseTimeContainer.visibility = VISIBLE
+        cinemaViewPager.animate().alpha(0f).withEndAction { cinemaViewPager.visibility = GONE }.start()
+        contentCinemaTextView.animate().alpha(0f).withEndAction { contentCinemaTextView.visibility = GONE }.start()
+        chooseTimeContainer.animate().alpha(1f).start()
     }
 
 }
@@ -57,3 +95,9 @@ private fun Int.getContent() = when (this) {
     5 -> "Un film très très bien qui permet de se rendre compte que les gens ne manquent jamais d'imagination pour trouver des races aliens"
     else -> "L'histoire d'un mec qui est super fort au foot, joue à NewCastle puis au Réal de madrid et serre la meuf de Beckham"
 }
+
+fun Int.toDp(resources: Resources) = TypedValue.applyDimension(
+    TypedValue.COMPLEX_UNIT_DIP,
+    this.toFloat(),
+    resources.getDisplayMetrics()
+)
