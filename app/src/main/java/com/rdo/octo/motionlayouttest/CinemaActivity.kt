@@ -3,10 +3,12 @@ package com.rdo.octo.motionlayouttest
 import android.animation.ValueAnimator
 import android.content.res.Resources
 import android.os.Bundle
+import android.os.Handler
 import android.util.TypedValue
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_cinema.*
 
@@ -42,14 +44,25 @@ class CinemaActivity : AppCompatActivity() {
         choseTimeButton.setOnClickListener {
             moveToTime()
         }
-        listOf(buttonTime8, buttonTime9).forEach { it.setOnClickListener {
-            moveToSeats()
+        listOf(buttonTime8, buttonTime9).forEach {
+            it.setOnClickListener {
+                moveToSeats()
+            }
+        }
+        listOf(
+            seat1, seat2, seat3, seat4, seat5, seat6, seat7, seat8, seat9, seat10,
+            seat11, seat12, seat13, seat14, seat15, seat16, seat17, seat18, seat19,
+            seat21, seat22, seat23, seat24, seat25
+        ).forEach { it.setOnClickListener {
+            it.setBackgroundColor(ContextCompat.getColor(this@CinemaActivity, R.color.colorAccent))
         } }
     }
 
     private fun moveToSeats() {
         placesCardView.visibility = VISIBLE
         fakeCardView.elevation = 0f
+        fakeCardView.pivotY = 0f
+        payButton.visibility = VISIBLE
         val ofFloat = ValueAnimator.ofFloat(0f, 50f)
         ofFloat.addUpdateListener {
             val value = it.animatedValue as Float
@@ -57,10 +70,17 @@ class CinemaActivity : AppCompatActivity() {
             firstCardViewCinema.scaleY = (100f - (value / 1.5f)) / 100f
             placesCardView.scaleX = (100f - (value / 3f)) / 100f
             placesCardView.scaleY = (100f - (value / 1.5f)) / 100f
+            placesCardView.translationY = fakeCardView.height * value / -150f
+            firstCardViewCinema.translationY = fakeCardView.height * value / -150f
             firstCardViewCinema.alpha = 1 - (value / 20f)
             placesCardView.alpha = value / 50f
-
+            payButton.alpha = value / 50f
+            fakeCardView.rotationX = -value * 0.85f
+            fakeCardView.translationY = fakeCardView.height * value / 150f
         }
+        Handler().postDelayed({
+            firstCardViewCinema.visibility = GONE
+        }, 1000)
         ofFloat.duration = 1000
         ofFloat.start()
     }
