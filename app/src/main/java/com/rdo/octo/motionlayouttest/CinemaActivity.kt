@@ -46,7 +46,7 @@ class CinemaActivity : AppCompatActivity() {
         choseTimeButton.setOnClickListener {
             moveToTime()
         }
-        listOf(buttonTime8, buttonTime9).forEach {
+        listOf(buttonTime8, buttonTime10, buttonTime9).forEach {
             it.setOnClickListener {
                 moveToSeats()
             }
@@ -63,6 +63,9 @@ class CinemaActivity : AppCompatActivity() {
         payButtonTextView.setOnClickListener {
             moveToTicket()
         }
+        finishCinemaButton.setOnClickListener {
+            this@CinemaActivity.finish()
+        }
     }
 
     private fun moveToTicket() {
@@ -75,7 +78,9 @@ class CinemaActivity : AppCompatActivity() {
         }
         ofFloat.duration = 500
         ofFloat.start()
-        blackLine.animate().alpha(1f).withEndAction { launchTicket() }.start()
+        blackLine.animate().alpha(1f).withEndAction {
+            Handler().postDelayed({ launchTicket() }, 500)
+        }.start()
         payButton.animate().alpha(0f).withEndAction { payButton.visibility = GONE }.start()
         placesCardView.animate().alpha(0f).withEndAction { placesCardView.visibility = GONE }.start()
 

@@ -29,9 +29,11 @@
             android:layout_height="100dp">
 
         <TextView
+                android:id="@+id/finishCinemaButton"
                 android:gravity="center"
                 android:text="Confirmation"
                 android:layout_margin="16dp"
+                android:foreground="?attr/selectableItemBackground"
                 android:textColor="@android:color/white"
                 android:background="@color/colorAccent"
                 android:layout_width="match_parent"
