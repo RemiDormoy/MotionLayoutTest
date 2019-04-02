@@ -12,7 +12,6 @@ import android.view.animation.BounceInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.NestedScrollingChildHelper
 import androidx.core.view.NestedScrollingParentHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,12 +27,12 @@ class CardsScrollActivity : AppCompatActivity() {
     private var loadingTranslation: Float = 0f
     private var randomYolo = 0
     private var isInAnim = false
-    private lateinit var linearLayoutManager: YoloLayoutManager
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cards)
-        linearLayoutManager = YoloLayoutManager(this)
+        linearLayoutManager = LinearLayoutManager(this)
         cardsRecyclerView.layoutManager = linearLayoutManager
         cardsRecyclerView.adapter = cardsAdapter
         cardsAdapter.notifyDataSetChanged()
@@ -62,7 +61,6 @@ class CardsScrollActivity : AppCompatActivity() {
     }
 
     private fun zob(yolo: Float) {
-        linearLayoutManager.canScroll = yolo < 2f
         cardsRecyclerView.translationY = yolo
         listOf(progressBar, textView28).forEach { it.translationY = yolo - loadingTranslation }
         cardsAdapter.viewList.forEach {
@@ -168,15 +166,6 @@ class YoloViewGroup @JvmOverloads constructor(
 
     override fun onStartNestedScroll(child: View?, target: View?, nestedScrollAxes: Int): Boolean {
         return true
-    }
-}
-
-class YoloLayoutManager(context: Context)  : LinearLayoutManager(context) {
-
-    var canScroll = true
-
-    override fun canScrollVertically(): Boolean {
-        return super.canScrollVertically()
     }
 }
 

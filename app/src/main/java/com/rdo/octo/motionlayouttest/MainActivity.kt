@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_zoom -> startActivity(Intent(this, TimeActivity::class.java))
                 R.id.nav_garbage -> startActivity(Intent(this, GarbageActivity::class.java))
                 R.id.nav_cards -> startActivity(Intent(this, CardsScrollActivity::class.java))
+                R.id.nav_gestures -> startActivity(Intent(this, GestureActivity::class.java))
+                R.id.nav_cinema -> startActivity(Intent(this, CinemaActivity::class.java))
+                R.id.nav_cards_hor -> startActivity(Intent(this, HorizontalCardScrollActivity::class.java))
             }
             true
         }

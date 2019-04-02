@@ -31,8 +31,21 @@
                 android:icon="@drawable/ic_directions_run_black_24dp"
                 android:title="Garbage" />
         <item
+                android:id="@+id/nav_cinema"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Cinema" />
+        <item
                 android:id="@+id/nav_cards"
                 android:icon="@drawable/ic_directions_run_black_24dp"
                 android:title="Card scroll" />
+        <item
+                android:id="@+id/nav_gestures"
+                android:icon="@drawable/ic_android_black_24dp"
+                android:title="Gesture" />
+
+        <item
+                android:id="@+id/nav_cards_hor"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Card scroll horizontal" />
     </group>
 </menu>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.rdo.octo.motionlayouttest">
+          xmlns:tools="http://schemas.android.com/tools" package="com.rdo.octo.motionlayouttest">
 
     <application
             android:allowBackup="true"
@@ -8,7 +8,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,7 +24,11 @@
         <activity android:name=".SeekActivity"/>
         <activity android:name=".BlobScreenActivity"/>
         <activity android:name=".GarbageActivity"/>
+        <activity android:name=".HorizontalCardScrollActivity"/>
+        <activity android:name=".GestureActivity"/>
+        <activity android:name=".CinemaActivity" />
         <activity android:name=".CardsScrollActivity" android:theme="@style/Theme.Design.Light.NoActionBar"/>
+        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
     </application>
 
 </manifest>
