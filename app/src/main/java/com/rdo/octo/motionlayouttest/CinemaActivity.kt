@@ -7,10 +7,12 @@ import android.os.Handler
 import android.util.TypedValue
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_cinema.*
+import kotlinx.android.synthetic.main.ticket_layout.*
 
 class CinemaActivity : AppCompatActivity() {
 
@@ -53,9 +55,37 @@ class CinemaActivity : AppCompatActivity() {
             seat1, seat2, seat3, seat4, seat5, seat6, seat7, seat8, seat9, seat10,
             seat11, seat12, seat13, seat14, seat15, seat16, seat17, seat18, seat19,
             seat21, seat22, seat23, seat24, seat25
-        ).forEach { it.setOnClickListener {
-            it.setBackgroundColor(ContextCompat.getColor(this@CinemaActivity, R.color.colorAccent))
-        } }
+        ).forEach {
+            it.setOnClickListener {
+                it.setBackgroundColor(ContextCompat.getColor(this@CinemaActivity, R.color.colorAccent))
+            }
+        }
+        payButtonTextView.setOnClickListener {
+            moveToTicket()
+        }
+    }
+
+    private fun moveToTicket() {
+        blackLine.visibility = VISIBLE
+        blackLine.translationY = fakeCardView.translationY
+        val ofFloat = ValueAnimator.ofFloat(50f * 0.85f, 90f)
+        ofFloat.addUpdateListener {
+            val value = it.animatedValue as Float
+            fakeCardView.rotationX = -value
+        }
+        ofFloat.duration = 500
+        ofFloat.start()
+        blackLine.animate().alpha(1f).withEndAction { launchTicket() }.start()
+        payButton.animate().alpha(0f).withEndAction { payButton.visibility = GONE }.start()
+        placesCardView.animate().alpha(0f).withEndAction { placesCardView.visibility = GONE }.start()
+
+    }
+
+    private fun launchTicket() {
+        ticketContainer.translationY = fakeCardView.translationY
+        ticketDouble.translationY = -ticketContainer.height.toFloat()
+        ticketContainer.visibility = VISIBLE
+        ticketDouble.animate().translationY(0f).setDuration(1000).setInterpolator(DecelerateInterpolator()).start()
     }
 
     private fun moveToSeats() {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:paddingTop="4dp"
+              android:id="@+id/ticketDouble"
+              android:paddingEnd="8dp"
+              android:paddingStart="8dp"
+              android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardCornerRadius="20dp"
+            android:layout_height="400dp">
+
+        <ImageView
+                android:scaleType="fitXY"
+                android:layout_margin="16dp"
+                android:src="@drawable/ticket"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_height="100dp">
+
+        <TextView
+                android:gravity="center"
+                android:text="Confirmation"
+                android:layout_margin="16dp"
+                android:textColor="@android:color/white"
+                android:background="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -6,6 +6,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <View
+            android:id="@+id/blackLine"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:alpha="0"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/fakeCardView"
+            app:layout_constraintEnd_toEndOf="@id/fakeCardView"
+            app:layout_constraintStart_toStartOf="@id/fakeCardView"
+            android:background="@android:color/black"/>
+
+    <FrameLayout
+            android:layout_width="0dp"
+            android:id="@+id/ticketContainer"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/blackLine"
+            app:layout_constraintEnd_toEndOf="@id/fakeCardView"
+            app:layout_constraintStart_toStartOf="@id/fakeCardView"
+            android:layout_height="wrap_content">
+
+        <include layout="@layout/ticket_layout" />
+
+    </FrameLayout>
+
     <androidx.cardview.widget.CardView
             android:id="@+id/fakeCardView"
             android:layout_width="0dp"
