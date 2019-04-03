@@ -93,6 +93,8 @@ class CinemaActivity : AppCompatActivity() {
         ticketContainer.translationY = fakeCardView.translationY
         ticketDouble.translationY = -ticketContainer.height.toFloat()
         ticketContainer.visibility = VISIBLE
+        yourticketTextView.visibility = VISIBLE
+        yourticketTextView.animate().alpha(1f).start()
         ticketDouble.animate().translationY(0f).setDuration(1000).setInterpolator(DecelerateInterpolator()).start()
     }
 

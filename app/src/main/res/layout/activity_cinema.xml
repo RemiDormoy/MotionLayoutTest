@@ -30,6 +30,21 @@
 
     </FrameLayout>
 
+    <TextView
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Votre ticket"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:alpha="0"
+            android:visibility="gone"
+            android:fontFamily="@font/arbutus"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/yourticketTextView"
+            android:layout_height="wrap_content"/>
+
     <androidx.cardview.widget.CardView
             android:id="@+id/fakeCardView"
             android:layout_width="0dp"
