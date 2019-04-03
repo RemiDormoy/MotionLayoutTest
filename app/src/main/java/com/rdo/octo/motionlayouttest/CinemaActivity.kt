@@ -83,6 +83,9 @@ class CinemaActivity : AppCompatActivity() {
         }.start()
         payButton.animate().alpha(0f).withEndAction { payButton.visibility = GONE }.start()
         placesCardView.animate().alpha(0f).withEndAction { placesCardView.visibility = GONE }.start()
+        leftLettersContainer.animate().alpha(0f).withEndAction { leftLettersContainer.visibility = GONE }.start()
+        rightLettersContainer.animate().alpha(0f).withEndAction { rightLettersContainer.visibility = GONE }.start()
+        bottomNumbersContainer.animate().alpha(0f).withEndAction { bottomNumbersContainer.visibility = GONE }.start()
 
     }
 
@@ -98,18 +101,37 @@ class CinemaActivity : AppCompatActivity() {
         fakeCardView.elevation = 0f
         fakeCardView.pivotY = 0f
         payButton.visibility = VISIBLE
+        leftLettersContainer.visibility = VISIBLE
+        rightLettersContainer.visibility = VISIBLE
+        bottomNumbersContainer.visibility = VISIBLE
         val ofFloat = ValueAnimator.ofFloat(0f, 50f)
         ofFloat.addUpdateListener {
             val value = it.animatedValue as Float
+
             firstCardViewCinema.scaleX = (100f - (value / 3f)) / 100f
             firstCardViewCinema.scaleY = (100f - (value / 1.5f)) / 100f
+            firstCardViewCinema.translationY = fakeCardView.height * value / -150f
+            firstCardViewCinema.alpha = 1 - (value / 20f)
+
             placesCardView.scaleX = (100f - (value / 3f)) / 100f
             placesCardView.scaleY = (100f - (value / 1.5f)) / 100f
             placesCardView.translationY = fakeCardView.height * value / -150f
-            firstCardViewCinema.translationY = fakeCardView.height * value / -150f
-            firstCardViewCinema.alpha = 1 - (value / 20f)
             placesCardView.alpha = value / 50f
+
+            leftLettersContainer.alpha = value / 50f
+            leftLettersContainer.scaleY = (100f - (value / 1.5f)) / 100f
+            leftLettersContainer.translationY = fakeCardView.height * value / -150f
+
+            rightLettersContainer.scaleY = (100f - (value / 1.5f)) / 100f
+            rightLettersContainer.alpha = value / 50f
+            rightLettersContainer.translationY = fakeCardView.height * value / -150f
+
+            bottomNumbersContainer.scaleX = (100f - (value / 3f)) / 100f
+            bottomNumbersContainer.alpha = value / 50f
+            bottomNumbersContainer.translationY = fakeCardView.height * value / -100f
+
             payButton.alpha = value / 50f
+
             fakeCardView.rotationX = -value * 0.85f
             fakeCardView.translationY = fakeCardView.height * value / 150f
         }

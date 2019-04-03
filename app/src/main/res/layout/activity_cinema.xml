@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="@id/fakeCardView"
             android:layout_height="wrap_content">
 
-        <include layout="@layout/ticket_layout" />
+        <include layout="@layout/ticket_layout"/>
 
     </FrameLayout>
 
@@ -528,6 +528,183 @@
 
     </FrameLayout>
 
+    <LinearLayout
+            android:id="@+id/leftLettersContainer"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:alpha="0"
+            android:visibility="invisible"
+            android:gravity="top"
+            app:layout_constraintTop_toTopOf="@id/placesCardView"
+            app:layout_constraintBottom_toBottomOf="@id/placesCardView"
+            app:layout_constraintEnd_toStartOf="@id/placesCardView"
+            android:layout_height="0dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="A"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="B"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="C"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="D"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="E"
+                android:textColor="@android:color/white"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/rightLettersContainer"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:alpha="0"
+            android:gravity="top"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/placesCardView"
+            app:layout_constraintBottom_toBottomOf="@id/placesCardView"
+            app:layout_constraintStart_toEndOf="@id/placesCardView"
+            android:layout_height="0dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="A"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="B"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="C"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="D"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="E"
+                android:textColor="@android:color/white"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/bottomNumbersContainer"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:alpha="0"
+            android:gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/placesCardView"
+            app:layout_constraintStart_toStartOf="@id/placesCardView"
+            app:layout_constraintEnd_toEndOf="@id/placesCardView"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="@android:color/white"
+        />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="@android:color/white"
+        />
+
+    </LinearLayout>
+
     <androidx.cardview.widget.CardView
             android:id="@+id/payButton"
             android:layout_width="0dp"
@@ -552,7 +729,7 @@
                 android:padding="16dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:background="@color/colorAccent"
-                android:text="Check out"
+                android:text="Validate your seats"
         />
     </androidx.cardview.widget.CardView>
 
