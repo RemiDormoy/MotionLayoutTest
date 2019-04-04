@@ -29,3 +29,13 @@ fun Int.toRessource() = when (this) {
     else -> R.drawable.goal
 }
 
+fun Int.toBackgroundRessource() = when (this) {
+    0 -> R.drawable.bondbackblur
+    1 -> R.drawable.lordback
+    2 -> R.drawable.hpbackgroundblur
+    3 -> R.drawable.gardiensblur
+    4 -> R.drawable.legobackgroundblur
+    5 -> R.drawable.baststarblur
+    else -> R.drawable.goal
+}
+

@@ -7,6 +7,8 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
+        renderscriptTargetApi 24
+        renderscriptSupportModeEnabled true
         applicationId "com.rdo.octo.motionlayouttest"
         minSdkVersion 21
         targetSdkVersion 28
@@ -28,7 +30,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.airbnb.android:lottie:2.3.1'
+    implementation 'com.eightbitlab:blurview:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'com.wonderkiln:blurkit:1.0.0'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'

@@ -13,13 +13,18 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_cinema.*
 import kotlinx.android.synthetic.main.ticket_layout.*
+import kotlin.math.abs
 
 class CinemaActivity : AppCompatActivity() {
 
 
+    private var currentPosition = 0
+    private var currentAlt = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cinema)
+        supportActionBar?.hide()
         cinemaViewPager.setPadding(54.toDp(resources).toInt(), 0, 54.toDp(resources).toInt(), 0)
         cinemaViewPager.clipToPadding = false
         cinemaViewPager.pageMargin = 50
@@ -30,10 +35,21 @@ class CinemaActivity : AppCompatActivity() {
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
+                val yolo = position + 1
+                if (yolo != currentAlt) {
+                    currentAlt = yolo
+                    backgroundFilterView.setImageResource(position.toBackgroundRessource())
+                    backgroundAltImageView.setImageResource(yolo.toBackgroundRessource())
+                }
+                backgroundAltImageView.alpha = positionOffset
+                backgroundFilterView.alpha = 1 - abs(positionOffset)
             }
 
             override fun onPageSelected(position: Int) {
+                currentPosition = position
+                backgroundFilterView.setImageResource(position.toBackgroundRessource())
+                backgroundAltImageView.alpha = 0f
+                backgroundFilterView.alpha = 1f
                 contentCinemaTextView.animate().alpha(0f).withEndAction {
                     cinemaTitleTextView.text = position.getTitle()
                     cinemaSummaryTextView.text = position.getContent()
