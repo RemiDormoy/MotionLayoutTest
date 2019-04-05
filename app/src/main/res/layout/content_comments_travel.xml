@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/canyon"
+            android:transitionName="background"
+            android:id="@+id/imageView29"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="Grand Canyon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:transitionName="title"
+            android:layout_marginTop="24dp"
+            android:textSize="20sp"
+            android:id="@+id/textView31" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="Grand Canyon National Park, Arizona, United States"
+            android:layout_width="0dp"
+            android:textSize="20sp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:layout_marginStart="24sp"
+            android:layout_marginEnd="24dp"
+            android:transitionName="addresse"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView32"
+            app:layout_constraintTop_toBottomOf="@+id/imageView29" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/ic_girl"
+            android:id="@+id/imageView30"
+            android:transitionName="image1"
+            app:layout_constraintTop_toBottomOf="@+id/textView32"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="Venue en juin 2014 avec des amis, nous en avons pris pleins les yeux ...grosse chaleur bien sur mais un ciel bleu et une vue extraordinaire ... a l infinis!
+Dommage que je n ai pu m aventurer dans les canyons, tout le monde ne supportant soit le chaud soit le vide, je devrais y retourner :)"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView33"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintTop_toTopOf="@+id/imageView30"
+            app:layout_constraintStart_toEndOf="@+id/imageView30"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:transitionName="image2"
+            app:srcCompat="@drawable/ic_man"
+            android:id="@+id/imageView31"
+            app:layout_constraintTop_toBottomOf="@+id/textView33"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="Un gros WOW, ce parc c'est des paysages à couper le souffle, surtout si vous avez la bonne idée de descendre dans le canyon pour une randonnée pédestre que vous ne serez pas prêt d'oublier, c'est garantie..."
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView34"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintTop_toTopOf="@+id/imageView31"
+            app:layout_constraintStart_toEndOf="@+id/imageView31"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/ic_girl_1"
+            android:id="@+id/imageView32"
+            android:transitionName="image3"
+            app:layout_constraintTop_toBottomOf="@+id/textView34"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="Incontournable de l'Ouest Américain. Cet immense parc offre des vues à couper le souffle.  Le coucher de soleil y est splendide."
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView35"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintTop_toTopOf="@+id/imageView32"
+            app:layout_constraintStart_toEndOf="@+id/imageView32"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar2"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:transitionName="rating"
+            android:gravity="end"
+            android:progress="4"
+            android:rating="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imageView29"/>
+
+    <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/ic_man_2"
+            android:id="@+id/imageView33"
+            app:layout_constraintTop_toBottomOf="@+id/textView35"
+            android:transitionName="image4"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="Je n'ai jamais rien vu de si beau . Le paysage , les couleurs.. sont à couper le souffle. Petite balade sympa le long du caynon avec possibilité de navette.  Endroit incontournable , à ne louper sous aucun prétexte !"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView36"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintTop_toTopOf="@+id/imageView33"
+            app:layout_constraintStart_toEndOf="@+id/imageView33"
+            app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
