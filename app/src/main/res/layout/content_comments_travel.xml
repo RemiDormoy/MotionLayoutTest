@@ -8,7 +8,7 @@
 
     <ImageView
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="270dp"
             app:srcCompat="@drawable/canyon"
             android:transitionName="background"
             android:id="@+id/imageView29"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:transitionName="title"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="40dp"
             android:textSize="20sp"
             android:id="@+id/textView31" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>

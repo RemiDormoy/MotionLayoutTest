@@ -52,6 +52,7 @@ class TravelActivity : AppCompatActivity() {
                 if (position < 5) {
                     (adapter.getItem(position + 1) as TravelPageFragment).setStuff(0.9f)
                 }
+                countTextView.text = "${position + 1} / 6"
             }
 
         })
