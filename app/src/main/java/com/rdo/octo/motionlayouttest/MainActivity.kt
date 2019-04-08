@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_gestures -> startActivity(Intent(this, GestureActivity::class.java))
                 R.id.nav_cinema -> startActivity(Intent(this, CinemaActivity::class.java))
                 R.id.nav_travel -> startActivity(Intent(this, TravelActivity::class.java))
-                R.id.nav_cards_hor -> startActivity(Intent(this, HorizontalCardScrollActivity::class.java))
+                R.id.nav_cards_hor -> startActivity(Intent(this, Camera2BasicActivity::class.java))
             }
             true
         }

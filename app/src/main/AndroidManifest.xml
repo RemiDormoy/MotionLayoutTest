@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools" package="com.rdo.octo.motionlayouttest">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+            android:name="android.hardware.camera2"
+            android:required="true" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -28,9 +36,15 @@
         <activity android:name=".GestureActivity"/>
         <activity android:name=".CinemaActivity" />
         <activity android:name=".TravelActivity"  android:theme="@style/NoStatusBarTheme" />
+        <activity android:name=".TicketActivity"  android:theme="@style/NoStatusBarTheme" />
+        <activity android:name=".Camera2BasicActivity"  android:theme="@style/NoStatusBarTheme" />
         <activity android:name=".CommentsActivity" android:theme="@style/NoStatusBarTheme"/>
         <activity android:name=".CardsScrollActivity" android:theme="@style/Theme.Design.Light.NoActionBar"/>
         <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
+
+        <meta-data
+                android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+                android:value="ocr" />
     </application>
 
 </manifest>
