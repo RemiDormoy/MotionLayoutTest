@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "979286389145",
+    "firebase_url": "https://doggyanimation-8685f.firebaseio.com",
+    "project_id": "doggyanimation-8685f",
+    "storage_bucket": "doggyanimation-8685f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979286389145:android:7f4af535139fa702",
+        "android_client_info": {
+          "package_name": "com.rdo.octo.motionlayouttest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5CRLXFCb0bwxCtH8tlx0T-CRQbYGnJxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979286389145-p4153ag9ape66kdl3a8lq6dp8rl2mal4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
