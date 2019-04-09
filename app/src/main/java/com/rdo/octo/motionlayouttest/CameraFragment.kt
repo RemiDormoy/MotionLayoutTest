@@ -1,6 +1,7 @@
 package com.rdo.octo.motionlayouttest
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
@@ -30,12 +31,17 @@ import android.view.LayoutInflater
 import android.view.Surface
 import android.view.TextureView
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.firebase.ml.vision.FirebaseVision
+import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import kotlinx.android.synthetic.main.ticket_activity.*
 import java.io.File
 import java.lang.Long.signum
 import java.util.Arrays
@@ -242,8 +248,31 @@ class Camera2BasicActivity : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ticket_activity)
+        supportActionBar?.hide()
         file = File(this.getExternalFilesDir(null), "picture_file")
         textureView = this.findViewById(R.id.textureView)
+        captureButton.setOnClickListener {
+            val bitmap = textureView.bitmap
+            val image = FirebaseVisionImage.fromBitmap(bitmap)
+            val detector = FirebaseVision.getInstance().onDeviceTextRecognizer
+            detector.processImage(image)
+                .addOnSuccessListener { firebaseVisionText ->
+                    recognizedText.text = firebaseVisionText.textBlocks.sortedBy {
+                        it.cornerPoints?.first()?.y
+                    }.map { it.text}.joinToString("\n")
+                    confirmationTicketContainer.visibility = VISIBLE
+                }
+                .addOnFailureListener {
+                    it.printStackTrace()
+                }
+        }
+
+        validateTicket.setOnClickListener {
+            confirmationTicketContainer.visibility = GONE
+        }
+        takeAgainTicket.setOnClickListener {
+            confirmationTicketContainer.visibility = GONE
+        }
     }
 
     override fun onResume() {
@@ -366,6 +395,7 @@ class Camera2BasicActivity : AppCompatActivity(), View.OnClickListener,
     /**
      * Opens the camera specified by [Camera2BasicFragment.cameraId].
      */
+    @SuppressLint("MissingPermission")
     private fun openCamera(width: Int, height: Int) {
         setUpCameraOutputs(width, height)
         configureTransform(width, height)
