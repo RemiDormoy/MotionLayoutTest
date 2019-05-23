@@ -38,6 +38,7 @@
         <activity android:name=".TravelActivity"  android:theme="@style/NoStatusBarTheme" />
         <activity android:name=".TicketActivity"  android:theme="@style/NoStatusBarTheme" />
         <activity android:name=".Camera2BasicActivity"  android:theme="@style/NoStatusBarTheme" />
+        <activity android:name=".FoodActivity"  android:theme="@style/NoStatusBarTheme" />
         <activity android:name=".CommentsActivity" android:theme="@style/NoStatusBarTheme"/>
         <activity android:name=".CardsScrollActivity" android:theme="@style/Theme.Design.Light.NoActionBar"/>
         <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>

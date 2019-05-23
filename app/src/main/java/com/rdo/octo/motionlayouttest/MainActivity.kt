@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_cinema -> startActivity(Intent(this, CinemaActivity::class.java))
                 R.id.nav_travel -> startActivity(Intent(this, TravelActivity::class.java))
                 R.id.nav_cards_hor -> startActivity(Intent(this, Camera2BasicActivity::class.java))
+                R.id.nav_food -> startActivity(Intent(this, FoodActivity::class.java))
             }
             true
         }

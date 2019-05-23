@@ -36,6 +36,10 @@
                 android:icon="@drawable/ic_directions_run_black_24dp"
                 android:title="Garbage" />
         <item
+                android:id="@+id/nav_food"
+                android:icon="@drawable/ic_directions_run_black_24dp"
+                android:title="Food" />
+        <item
                 android:id="@+id/nav_cinema"
                 android:icon="@drawable/ic_directions_run_black_24dp"
                 android:title="Cinema" />
